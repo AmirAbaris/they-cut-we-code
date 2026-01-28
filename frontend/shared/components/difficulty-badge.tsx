@@ -1,21 +1,26 @@
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
 interface DifficultyBadgeProps {
   difficulty: string;
 }
 
-const difficultyColors: Record<string, string> = {
-  Easy: "text-green-600 bg-green-100",
-  Medium: "text-yellow-600 bg-yellow-100",
-  Hard: "text-red-600 bg-red-100",
+const difficultyVariants: Record<string, string> = {
+  Easy: "bg-green-500/10 text-green-700 border-green-500/20 dark:bg-green-500/20 dark:text-green-400",
+  Medium: "bg-yellow-500/10 text-yellow-700 border-yellow-500/20 dark:bg-yellow-500/20 dark:text-yellow-400",
+  Hard: "bg-red-500/10 text-red-700 border-red-500/20 dark:bg-red-500/20 dark:text-red-400",
 };
 
 export function DifficultyBadge({ difficulty }: DifficultyBadgeProps) {
   return (
-    <span
-      className={`px-3 py-1 text-sm font-medium rounded ${
-        difficultyColors[difficulty] || "text-gray-600 bg-gray-100"
-      }`}
+    <Badge
+      variant="outline"
+      className={cn(
+        difficultyVariants[difficulty] ||
+          "bg-muted text-muted-foreground border-border"
+      )}
     >
       {difficulty}
-    </span>
+    </Badge>
   );
 }

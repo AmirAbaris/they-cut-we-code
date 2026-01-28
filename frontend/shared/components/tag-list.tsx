@@ -1,18 +1,22 @@
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
 interface TagListProps {
   tags: string[];
   className?: string;
 }
 
-export function TagList({ tags, className = "" }: TagListProps) {
+export function TagList({ tags, className }: TagListProps) {
   return (
-    <div className={`flex flex-wrap gap-2 ${className}`}>
+    <div className={cn("flex flex-wrap gap-2", className)}>
       {tags.map((tag) => (
-        <span
+        <Badge
           key={tag}
-          className="px-2 py-1 text-xs font-medium text-gray-700 bg-gray-100 rounded"
+          variant="secondary"
+          className="text-xs font-medium"
         >
           {tag}
-        </span>
+        </Badge>
       ))}
     </div>
   );
