@@ -1,13 +1,17 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { ProblemCardSkeleton } from "@/shared/components/problem-card-skeleton";
+import { ThemeToggle } from "@/shared/components/theme-toggle";
 
 export default function Loading() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8">
-          <Skeleton className="h-10 w-64 mb-2" />
-          <Skeleton className="h-5 w-96" />
+        <div className="mb-8 flex items-start justify-between">
+          <div>
+            <Skeleton className="h-10 w-64 mb-2" />
+            <Skeleton className="h-5 w-96" />
+          </div>
+          <ThemeToggle />
         </div>
 
         <div className="mb-6">

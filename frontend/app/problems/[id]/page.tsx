@@ -11,6 +11,7 @@ import { CodeEditor } from "@/features/judge/components/code-editor";
 import { RunResults } from "@/features/judge/components/run-results";
 import { SubmitResults } from "@/features/judge/components/submit-results";
 import { ErrorState } from "@/shared/components/error-state";
+import { ThemeToggle } from "@/shared/components/theme-toggle";
 import { getErrorMessage } from "@/shared/utils/api-error";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
@@ -72,8 +73,9 @@ export default function ProblemPage() {
     return (
       <div className="min-h-screen bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-4">
+          <div className="mb-4 flex items-center justify-between">
             <Skeleton className="h-5 w-32" />
+            <ThemeToggle />
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
             <Card>
@@ -113,13 +115,14 @@ export default function ProblemPage() {
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-4">
+        <div className="mb-4 flex items-center justify-between">
           <Link
             href="/"
             className="text-primary hover:text-primary/80 text-sm font-medium"
           >
             ← Back to Problems
           </Link>
+          <ThemeToggle />
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
