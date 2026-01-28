@@ -15,6 +15,7 @@ import { ThemeToggle } from "@/shared/components/theme-toggle";
 import { getErrorMessage } from "@/shared/utils/api-error";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { toast } from "sonner";
 
 export default function ProblemPage() {
   const params = useParams();
@@ -44,7 +45,9 @@ export default function ProblemPage() {
       {
         onSuccess: (result) => {
           if (!result.success) {
-            console.error("Error running code:", result.error.message);
+            toast.error("Error running code", {
+              description: result.error.message,
+            });
           }
         },
       },
@@ -62,7 +65,9 @@ export default function ProblemPage() {
       {
         onSuccess: (result) => {
           if (!result.success) {
-            console.error("Error submitting code:", result.error.message);
+            toast.error("Error submitting code", {
+              description: result.error.message,
+            });
           }
         },
       },
