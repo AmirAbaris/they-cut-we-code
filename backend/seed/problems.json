@@ -1,0 +1,689 @@
+[
+  {
+    "slug": "group-anagrams",
+    "title": "Group Anagrams",
+    "difficulty": "Medium",
+    "tags": ["array", "hash-table", "string", "sorting"],
+    "statementMd": "Given an array of strings `strs`, group the anagrams together. You can return the answer in any order.\n\nAn Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once.\n\n**Example 1:**\n```\nInput: strs = [\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]\nOutput: [[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]\n```\n\n**Example 2:**\n```\nInput: strs = [\"\"]\nOutput: [[\"\"]]\n```\n\n**Example 3:**\n```\nInput: strs = [\"a\"]\nOutput: [[\"a\"]]\n```\n\n**Constraints:**\n- `1 <= strs.length <= 10^4`\n- `0 <= strs[i].length <= 100`\n- `strs[i]` consists of lowercase English letters.",
+    "starterJs": "const fs = require('fs');\nconst input = fs.readFileSync('/work/input.txt', 'utf-8').trim();\nconst strs = JSON.parse(input);\n\n// Your solution here\n\n// Output result\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\n# Read input\nwith open('/work/input.txt', 'r') as f:\n    strs = json.loads(f.read().strip())\n\n# Your solution here\n\n# Output result\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[\"eat\",\"tea\",\"tan\",\"ate\",\"nat\",\"bat\"]",
+        "expectedOutput": "[[\"bat\"],[\"nat\",\"tan\"],[\"ate\",\"eat\",\"tea\"]]"
+      },
+      {
+        "isHidden": false,
+        "input": "[\"\"]",
+        "expectedOutput": "[[\"\"]]"
+      },
+      {
+        "isHidden": true,
+        "input": "[\"a\"]",
+        "expectedOutput": "[[\"a\"]]"
+      },
+      {
+        "isHidden": true,
+        "input": "[\"abc\",\"cba\",\"bac\"]",
+        "expectedOutput": "[[\"abc\",\"bac\",\"cba\"]]"
+      }
+    ]
+  },
+  {
+    "slug": "two-sum",
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "tags": ["array", "hash-table"],
+    "statementMd": "Given an array of integers `nums` and an integer `target`, return indices of the two numbers such that they add up to `target`.\n\nYou may assume that each input would have exactly one solution, and you may not use the same element twice.\n\nYou can return the answer in any order.\n\n**Example 1:**\n```\nInput: nums = [2,7,11,15], target = 9\nOutput: [0,1]\nExplanation: Because nums[0] + nums[1] == 9, we return [0, 1].\n```\n\n**Example 2:**\n```\nInput: nums = [3,2,4], target = 6\nOutput: [1,2]\n```\n\n**Example 3:**\n```\nInput: nums = [3,3], target = 6\nOutput: [0,1]\n```\n\n**Constraints:**\n- `2 <= nums.length <= 10^4`\n- `-10^9 <= nums[i] <= 10^9`\n- `-10^9 <= target <= 10^9`\n- Only one valid answer exists.",
+    "starterJs": "const fs = require('fs');\ntry {\n  const input = fs.readFileSync('/work/input.txt', 'utf-8').trim();\n  const lines = input.split('\\n');\n  const nums = JSON.parse(lines[0]);\n  const target = parseInt(lines[1]);\n  \n  // Your solution here\n  let result;\n  \n  console.log(JSON.stringify(result));\n} catch (e) {\n  console.error('Error:', e.message);\n  process.exit(1);\n}",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nnums = json.loads(lines[0])\ntarget = int(lines[1])\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[2,7,11,15]\\n9",
+        "expectedOutput": "[0,1]"
+      },
+      {
+        "isHidden": false,
+        "input": "[3,2,4]\\n6",
+        "expectedOutput": "[1,2]"
+      },
+      {
+        "isHidden": true,
+        "input": "[3,3]\\n6",
+        "expectedOutput": "[0,1]"
+      },
+      {
+        "isHidden": true,
+        "input": "[-1,-2,-3,-4,-5]\\n-8",
+        "expectedOutput": "[2,4]"
+      }
+    ]
+  },
+  {
+    "slug": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "tags": ["stack", "string"],
+    "statementMd": "Given a string `s` containing just the characters `'('`, `')'`, `'{'`, `'}'`, `'['` and `']'`, determine if the input string is valid.\n\nAn input string is valid if:\n1. Open brackets must be closed by the same type of brackets.\n2. Open brackets must be closed in the correct order.\n3. Every close bracket has a corresponding open bracket of the same type.\n\n**Example 1:**\n```\nInput: s = \"()\"\nOutput: true\n```\n\n**Example 2:**\n```\nInput: s = \"()[]{}\"\nOutput: true\n```\n\n**Example 3:**\n```\nInput: s = \"(]\"\nOutput: false\n```\n\n**Constraints:**\n- `1 <= s.length <= 10^4`\n- `s` consists of parentheses only `'()[]{}'`.",
+    "starterJs": "const fs = require('fs');\nconst s = fs.readFileSync('/work/input.txt', 'utf-8').trim();\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "with open('/work/input.txt', 'r') as f:\n    s = f.read().strip()\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "()",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "()[]{}",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "(]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": true,
+        "input": "([)]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": true,
+        "input": "{[]}",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "slug": "binary-search",
+    "title": "Binary Search",
+    "difficulty": "Easy",
+    "tags": ["binary-search", "array"],
+    "statementMd": "Given an array of integers `nums` which is sorted in ascending order, and an integer `target`, write a function to search `target` in `nums`. If `target` exists, then return its index. Otherwise, return `-1`.\n\nYou must write an algorithm with `O(log n)` runtime complexity.\n\n**Example 1:**\n```\nInput: nums = [-1,0,3,5,9,12], target = 9\nOutput: 4\nExplanation: 9 exists in nums and its index is 4\n```\n\n**Example 2:**\n```\nInput: nums = [-1,0,3,5,9,12], target = 2\nOutput: -1\nExplanation: 2 does not exist in nums so return -1\n```\n\n**Constraints:**\n- `1 <= nums.length <= 10^4`\n- `-10^4 < nums[i], target < 10^4`\n- All the integers in `nums` are unique.\n- `nums` is sorted in ascending order.",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst nums = JSON.parse(lines[0]);\nconst target = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nnums = json.loads(lines[0])\ntarget = int(lines[1])\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[-1,0,3,5,9,12]\\n9",
+        "expectedOutput": "4"
+      },
+      {
+        "isHidden": false,
+        "input": "[-1,0,3,5,9,12]\\n2",
+        "expectedOutput": "-1"
+      },
+      {
+        "isHidden": true,
+        "input": "[5]\\n5",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "[2,5]\\n5",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "slug": "invert-binary-tree",
+    "title": "Invert Binary Tree",
+    "difficulty": "Easy",
+    "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"],
+    "statementMd": "Given the `root` of a binary tree, invert the tree, and return its root.\n\n**Example 1:**\n```\nInput: root = [4,2,7,1,3,6,9]\nOutput: [4,7,2,9,6,3,1]\n```\n\n**Example 2:**\n```\nInput: root = [2,1,3]\nOutput: [2,3,1]\n```\n\n**Example 3:**\n```\nInput: root = []\nOutput: []\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range `[0, 100]`.\n- `-100 <= Node.val <= 100`",
+    "starterJs": "const fs = require('fs');\nconst root = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    root = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[4,2,7,1,3,6,9]",
+        "expectedOutput": "[4,7,2,9,6,3,1]"
+      },
+      {
+        "isHidden": false,
+        "input": "[2,1,3]",
+        "expectedOutput": "[2,3,1]"
+      },
+      {
+        "isHidden": true,
+        "input": "[]",
+        "expectedOutput": "[]"
+      },
+      {
+        "isHidden": true,
+        "input": "[1]",
+        "expectedOutput": "[1]"
+      }
+    ]
+  },
+  {
+    "slug": "maximum-depth-of-binary-tree",
+    "title": "Maximum Depth of Binary Tree",
+    "difficulty": "Easy",
+    "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"],
+    "statementMd": "Given the `root` of a binary tree, return its maximum depth.\n\nA binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.\n\n**Example 1:**\n```\nInput: root = [3,9,20,null,null,15,7]\nOutput: 3\n```\n\n**Example 2:**\n```\nInput: root = [1,null,2]\nOutput: 2\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range `[0, 10^4]`.\n- `-100 <= Node.val <= 100`",
+    "starterJs": "const fs = require('fs');\nconst root = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    root = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[3,9,20,null,null,15,7]",
+        "expectedOutput": "3"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,null,2]",
+        "expectedOutput": "2"
+      },
+      {
+        "isHidden": true,
+        "input": "[]",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "[0]",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "slug": "diameter-of-binary-tree",
+    "title": "Diameter of Binary Tree",
+    "difficulty": "Easy",
+    "tags": ["tree", "depth-first-search", "binary-tree"],
+    "statementMd": "Given the `root` of a binary tree, return the length of the diameter of the tree.\n\nThe diameter of a binary tree is the length of the longest path between any two nodes in a tree. This path may or may not pass through the `root`.\n\nThe length of a path between two nodes is represented by the number of edges between them.\n\n**Example 1:**\n```\nInput: root = [1,2,3,4,5]\nOutput: 3\nExplanation: 3 is the length of the path [4,2,1,3] or [5,2,1,3].\n```\n\n**Example 2:**\n```\nInput: root = [1,2]\nOutput: 1\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range `[1, 10^4]`.\n- `-100 <= Node.val <= 100`",
+    "starterJs": "const fs = require('fs');\nconst root = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    root = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,2,3,4,5]",
+        "expectedOutput": "3"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2]",
+        "expectedOutput": "1"
+      },
+      {
+        "isHidden": true,
+        "input": "[1]",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,3,null,4,5,6]",
+        "expectedOutput": "4"
+      }
+    ]
+  },
+  {
+    "slug": "balanced-binary-tree",
+    "title": "Balanced Binary Tree",
+    "difficulty": "Easy",
+    "tags": ["tree", "depth-first-search", "binary-tree"],
+    "statementMd": "Given a binary tree, determine if it is height-balanced.\n\nA height-balanced binary tree is a binary tree in which the left and right subtrees of every node differ in height by no more than 1.\n\n**Example 1:**\n```\nInput: root = [3,9,20,null,null,15,7]\nOutput: true\n```\n\n**Example 2:**\n```\nInput: root = [1,2,2,3,3,null,null,4,4]\nOutput: false\n```\n\n**Example 3:**\n```\nInput: root = []\nOutput: true\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range `[0, 5000]`.\n- `-10^4 <= Node.val <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst root = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    root = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(str(result).toLowerCase())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[3,9,20,null,null,15,7]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2,2,3,3,null,null,4,4]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": false,
+        "input": "[]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,2,3,null,null,3,4,null,null,4]",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "slug": "same-tree",
+    "title": "Same Tree",
+    "difficulty": "Easy",
+    "tags": ["tree", "depth-first-search", "breadth-first-search", "binary-tree"],
+    "statementMd": "Given the roots of two binary trees `p` and `q`, write a function to check if they are the same or not.\n\nTwo binary trees are considered the same if they are structurally identical, and the nodes have the same value.\n\n**Example 1:**\n```\nInput: p = [1,2,3], q = [1,2,3]\nOutput: true\n```\n\n**Example 2:**\n```\nInput: p = [1,2], q = [1,null,2]\nOutput: false\n```\n\n**Example 3:**\n```\nInput: p = [1,2,1], q = [1,1,2]\nOutput: false\n```\n\n**Constraints:**\n- The number of nodes in both trees is in the range `[0, 100]`.\n- `-10^4 <= Node.val <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst p = JSON.parse(lines[0]);\nconst q = JSON.parse(lines[1]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\np = json.loads(lines[0])\nq = json.loads(lines[1])\n\n# Your solution here\n\nprint(str(result).toLowerCase())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,2,3]\\n[1,2,3]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2]\\n[1,null,2]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2,1]\\n[1,1,2]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": true,
+        "input": "[]\\n[]",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "slug": "subtree-of-another-tree",
+    "title": "Subtree of Another Tree",
+    "difficulty": "Easy",
+    "tags": ["tree", "depth-first-search", "string-matching", "binary-tree", "hash-function"],
+    "statementMd": "Given the roots of two binary trees `root` and `subRoot`, return `true` if there is a subtree of `root` with the same structure and node values of `subRoot` and `false` otherwise.\n\nA subtree of a binary tree `tree` is a tree that consists of a node in `tree` and all of this node's descendants. The tree `tree` could also be considered as a subtree of itself.\n\n**Example 1:**\n```\nInput: root = [3,4,5,1,2], subRoot = [4,1,2]\nOutput: true\n```\n\n**Example 2:**\n```\nInput: root = [3,4,5,1,2,null,null,null,null,0], subRoot = [4,1,2]\nOutput: false\n```\n\n**Constraints:**\n- The number of nodes in the `root` tree is in the range `[1, 2000]`.\n- The number of nodes in the `subRoot` tree is in the range `[1, 1000]`.\n- `-10^4 <= root.val <= 10^4`\n- `-10^4 <= subRoot.val <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst root = JSON.parse(lines[0]);\nconst subRoot = JSON.parse(lines[1]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nroot = json.loads(lines[0])\nsubRoot = json.loads(lines[1])\n\n# Your solution here\n\nprint(str(result).toLowerCase())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[3,4,5,1,2]\\n[4,1,2]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "[3,4,5,1,2,null,null,null,null,0]\\n[4,1,2]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,1]\\n[1]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": true,
+        "input": "[1]\\n[1]",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+    "title": "Lowest Common Ancestor of a Binary Search Tree",
+    "difficulty": "Medium",
+    "tags": ["tree", "depth-first-search", "binary-search-tree", "binary-tree"],
+    "statementMd": "Given a binary search tree (BST), find the lowest common ancestor (LCA) node of two given nodes in the BST.\n\nAccording to the definition of LCA on Wikipedia: \"The lowest common ancestor is defined between two nodes `p` and `q` as the lowest node in `T` that has both `p` and `q` as descendants (where we allow a node to be a descendant of itself).\"\n\n**Example 1:**\n```\nInput: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8\nOutput: 6\nExplanation: The LCA of nodes 2 and 8 is 6.\n```\n\n**Example 2:**\n```\nInput: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 4\nOutput: 2\nExplanation: The LCA of nodes 2 and 4 is 2, since a node can be a descendant of itself according to the LCA definition.\n```\n\n**Example 3:**\n```\nInput: root = [2,1], p = 2, q = 1\nOutput: 2\n```\n\n**Constraints:**\n- The number of nodes in the tree is in the range `[2, 10^5]`.\n- `-10^9 <= Node.val <= 10^9`\n- All `Node.val` are unique.\n- `p != q`\n- `p` and `q` will exist in the BST.",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst root = JSON.parse(lines[0]);\nconst p = parseInt(lines[1]);\nconst q = parseInt(lines[2]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nroot = json.loads(lines[0])\np = int(lines[1])\nq = int(lines[2])\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[6,2,8,0,4,7,9,null,null,3,5]\\n2\\n8",
+        "expectedOutput": "6"
+      },
+      {
+        "isHidden": false,
+        "input": "[6,2,8,0,4,7,9,null,null,3,5]\\n2\\n4",
+        "expectedOutput": "2"
+      },
+      {
+        "isHidden": false,
+        "input": "[2,1]\\n2\\n1",
+        "expectedOutput": "2"
+      },
+      {
+        "isHidden": true,
+        "input": "[6,2,8,0,4,7,9,null,null,3,5]\\n3\\n5",
+        "expectedOutput": "4"
+      }
+    ]
+  },
+  {
+    "slug": "valid-palindrome",
+    "title": "Valid Palindrome",
+    "difficulty": "Easy",
+    "tags": ["two-pointers", "string"],
+    "statementMd": "A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.\n\nGiven a string `s`, return `true` if it is a palindrome, or `false` otherwise.\n\n**Example 1:**\n```\nInput: s = \"A man, a plan, a canal: Panama\"\nOutput: true\nExplanation: \"amanaplanacanalpanama\" is a palindrome.\n```\n\n**Example 2:**\n```\nInput: s = \"race a car\"\nOutput: false\nExplanation: \"raceacar\" is not a palindrome.\n```\n\n**Example 3:**\n```\nInput: s = \" \"\nOutput: true\nExplanation: s is an empty string \"\" after removing non-alphanumeric characters.\nSince an empty string reads the same forward and backward, it is a palindrome.\n```\n\n**Constraints:**\n- `1 <= s.length <= 2 * 10^5`\n- `s` consists only of printable ASCII characters.",
+    "starterJs": "const fs = require('fs');\nconst s = fs.readFileSync('/work/input.txt', 'utf-8').trim();\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "with open('/work/input.txt', 'r') as f:\n    s = f.read().strip()\n\n# Your solution here\n\nprint(str(result).toLowerCase())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "A man, a plan, a canal: Panama",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "race a car",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": false,
+        "input": " ",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": true,
+        "input": "racecar",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "slug": "two-sum-ii-input-array-is-sorted",
+    "title": "Two Sum II Input Array Is Sorted",
+    "difficulty": "Medium",
+    "tags": ["array", "two-pointers", "binary-search"],
+    "statementMd": "Given a 1-indexed array of integers `numbers` that is already sorted in non-decreasing order, find two numbers such that they add up to a specific `target` number. Let these two numbers be `numbers[index1]` and `numbers[index2]` where `1 <= index1 < index2 <= numbers.length`.\n\nReturn the indices of the two numbers, `index1` and `index2`, added by one as an integer array `[index1, index2]` of length 2.\n\nThe tests are generated such that there is exactly one solution. You may not use the same element twice.\n\nYour solution must use only constant extra space.\n\n**Example 1:**\n```\nInput: numbers = [2,7,11,15], target = 9\nOutput: [1,2]\nExplanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].\n```\n\n**Example 2:**\n```\nInput: numbers = [2,3,4], target = 6\nOutput: [1,3]\nExplanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. We return [1, 3].\n```\n\n**Example 3:**\n```\nInput: numbers = [-1,0], target = -1\nOutput: [1,2]\nExplanation: The sum of -1 and 0 is -1. Therefore index1 = 1, index2 = 2. We return [1, 2].\n```\n\n**Constraints:**\n- `2 <= numbers.length <= 3 * 10^4`\n- `-1000 <= numbers[i] <= 1000`\n- `numbers` is sorted in non-decreasing order.\n- `-1000 <= target <= 1000`\n- The tests are generated such that there is exactly one solution.",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst numbers = JSON.parse(lines[0]);\nconst target = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nnumbers = json.loads(lines[0])\ntarget = int(lines[1])\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[2,7,11,15]\\n9",
+        "expectedOutput": "[1,2]"
+      },
+      {
+        "isHidden": false,
+        "input": "[2,3,4]\\n6",
+        "expectedOutput": "[1,3]"
+      },
+      {
+        "isHidden": false,
+        "input": "[-1,0]\\n-1",
+        "expectedOutput": "[1,2]"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,3,4,4,9,56,90]\\n8",
+        "expectedOutput": "[4,5]"
+      }
+    ]
+  },
+  {
+    "slug": "3sum",
+    "title": "3Sum",
+    "difficulty": "Medium",
+    "tags": ["array", "two-pointers", "sorting"],
+    "statementMd": "Given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` such that `i != j`, `i != k`, and `j != k`, and `nums[i] + nums[j] + nums[k] == 0`.\n\nNotice that the solution set must not contain duplicate triplets.\n\n**Example 1:**\n```\nInput: nums = [-1,0,1,2,-1,-4]\nOutput: [[-1,-1,2],[-1,0,1]]\nExplanation:\nnums[0] + nums[1] + nums[2] = (-1) + 0 + 1 = 0.\nnums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.\nThe distinct triplets are [-1,0,1] and [-1,-1,2].\nNotice that the order of the output and the order of the triplets does not matter.\n```\n\n**Example 2:**\n```\nInput: nums = [0,1,1]\nOutput: []\nExplanation: The only possible triplet does not sum up to 0.\n```\n\n**Example 3:**\n```\nInput: nums = [0,0,0]\nOutput: [[0,0,0]]\nExplanation: The only possible triplet sums up to 0.\n```\n\n**Constraints:**\n- `3 <= nums.length <= 3000`\n- `-10^5 <= nums[i] <= 10^5`",
+    "starterJs": "const fs = require('fs');\nconst nums = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    nums = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[-1,0,1,2,-1,-4]",
+        "expectedOutput": "[[-1,-1,2],[-1,0,1]]"
+      },
+      {
+        "isHidden": false,
+        "input": "[0,1,1]",
+        "expectedOutput": "[]"
+      },
+      {
+        "isHidden": false,
+        "input": "[0,0,0]",
+        "expectedOutput": "[[0,0,0]]"
+      },
+      {
+        "isHidden": true,
+        "input": "[-2,0,1,1,2]",
+        "expectedOutput": "[[-2,0,2],[-2,1,1]]"
+      }
+    ]
+  },
+  {
+    "slug": "container-with-most-water",
+    "title": "Container With Most Water",
+    "difficulty": "Medium",
+    "tags": ["array", "two-pointers", "greedy"],
+    "statementMd": "You are given an integer array `height` of length `n`. There are `n` vertical lines drawn such that the two endpoints of the `i-th` line are `(i, 0)` and `(i, height[i])`.\n\nFind two lines that together with the x-axis form a container, such that the container contains the most water.\n\nReturn the maximum amount of water a container can store.\n\nNotice that you may not slant the container.\n\n**Example 1:**\n```\nInput: height = [1,8,6,2,5,4,8,3,7]\nOutput: 49\nExplanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49.\n```\n\n**Example 2:**\n```\nInput: height = [1,1]\nOutput: 1\n```\n\n**Constraints:**\n- `n == height.length`\n- `2 <= n <= 10^5`\n- `0 <= height[i] <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst height = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    height = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,8,6,2,5,4,8,3,7]",
+        "expectedOutput": "49"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,1]",
+        "expectedOutput": "1"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,1]",
+        "expectedOutput": "2"
+      },
+      {
+        "isHidden": true,
+        "input": "[2,3,4,5,18,17,6]",
+        "expectedOutput": "17"
+      }
+    ]
+  },
+  {
+    "slug": "min-stack",
+    "title": "Min Stack",
+    "difficulty": "Medium",
+    "tags": ["stack", "design"],
+    "statementMd": "Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.\n\nImplement the `MinStack` class:\n\n- `MinStack()` initializes the stack object.\n- `void push(int val)` pushes the element `val` onto the stack.\n- `void pop()` removes the element on the top of the stack.\n- `int top()` gets the top element of the stack.\n- `int getMin()` retrieves the minimum element in the stack.\n\nYou must implement a solution with `O(1)` time complexity for each function.\n\n**Example 1:**\n```\nInput\n[\"MinStack\",\"push\",\"push\",\"push\",\"getMin\",\"pop\",\"top\",\"getMin\"]\n[[],[-2],[0],[-3],[],[],[],[]]\n\nOutput\n[null,null,null,null,-3,null,0,-2]\n\nExplanation\nMinStack minStack = new MinStack();\nminStack.push(-2);\nminStack.push(0);\nminStack.push(-3);\nminStack.getMin(); // return -3\nminStack.pop();\nminStack.top();    // return 0\nminStack.getMin(); // return -2\n```\n\n**Constraints:**\n- `-2^31 <= val <= 2^31 - 1`\n- Methods `pop`, `top` and `getMin` will always be called on non-empty stacks.\n- At most `3 * 10^4` calls will be made to `push`, `pop`, `top`, and `getMin`.",
+    "starterJs": "const fs = require('fs');\nconst input = fs.readFileSync('/work/input.txt', 'utf-8').trim();\nconst operations = JSON.parse(input);\n\n// Your solution here\n// Implement MinStack class\n\n// Process operations and output results\nconst results = [];\nconst minStack = new MinStack();\n\nfor (let i = 0; i < operations.length; i++) {\n  const op = operations[i];\n  if (op === 'push') {\n    minStack.push(operations[i + 1]);\n    results.push(null);\n    i++;\n  } else if (op === 'pop') {\n    minStack.pop();\n    results.push(null);\n  } else if (op === 'top') {\n    results.push(minStack.top());\n  } else if (op === 'getMin') {\n    results.push(minStack.getMin());\n  }\n}\n\nconsole.log(JSON.stringify(results));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    operations = json.loads(f.read().strip())\n\n# Your solution here\n# Implement MinStack class\n\n# Process operations and output results\nresults = []\nmin_stack = MinStack()\n\ni = 0\nwhile i < len(operations):\n    op = operations[i]\n    if op == 'push':\n        min_stack.push(operations[i + 1])\n        results.append(None)\n        i += 1\n    elif op == 'pop':\n        min_stack.pop()\n        results.append(None)\n    elif op == 'top':\n        results.append(min_stack.top())\n    elif op == 'getMin':\n        results.append(min_stack.getMin())\n    i += 1\n\nprint(json.dumps(results))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[\"MinStack\",\"push\",-2,\"push\",0,\"push\",-3,\"getMin\",\"pop\",\"top\",\"getMin\"]",
+        "expectedOutput": "[null,null,null,null,-3,null,0,-2]"
+      },
+      {
+        "isHidden": false,
+        "input": "[\"MinStack\",\"push\",1,\"push\",1,\"top\",\"getMin\",\"pop\",\"getMin\",\"top\"]",
+        "expectedOutput": "[null,null,null,1,1,null,1,null]"
+      },
+      {
+        "isHidden": true,
+        "input": "[\"MinStack\",\"push\",0,\"push\",1,\"getMin\",\"getMin\",\"push\",0,\"getMin\",\"getMin\",\"pop\",\"getMin\"]",
+        "expectedOutput": "[null,null,null,0,0,null,0,0,null,0]"
+      }
+    ]
+  },
+  {
+    "slug": "evaluate-reverse-polish-notation",
+    "title": "Evaluate Reverse Polish Notation",
+    "difficulty": "Medium",
+    "tags": ["array", "math", "stack"],
+    "statementMd": "You are given an array of strings `tokens` that represents an arithmetic expression in Reverse Polish Notation.\n\nEvaluate the expression. Return an integer representing the value of the expression.\n\nNote that:\n- The valid operators are `'+'`, `'-'`, `'*'`, and `'/'`.\n- Each operand may be an integer or another expression.\n- The division between two integers always truncates toward zero.\n- There will not be any division by zero.\n- The input represents a valid arithmetic expression in a reverse polish notation.\n- The answer and all the intermediate calculations can be represented in a 32-bit integer.\n\n**Example 1:**\n```\nInput: tokens = [\"2\",\"1\",\"+\",\"3\",\"*\"]\nOutput: 9\nExplanation: ((2 + 1) * 3) = 9\n```\n\n**Example 2:**\n```\nInput: tokens = [\"4\",\"13\",\"5\",\"/\",\"+\"]\nOutput: 6\nExplanation: (4 + (13 / 5)) = 6\n```\n\n**Example 3:**\n```\nInput: tokens = [\"10\",\"6\",\"9\",\"3\",\"+\",\"-11\",\"*\",\"/\",\"*\",\"17\",\"+\",\"5\",\"+\"]\nOutput: 22\nExplanation: ((10 * (6 / ((9 + 3) * -11))) + 17) + 5\n= ((10 * (6 / (12 * -11))) + 17) + 5\n= ((10 * (6 / -132)) + 17) + 5\n= ((10 * 0) + 17) + 5\n= (0 + 17) + 5\n= 17 + 5\n= 22\n```\n\n**Constraints:**\n- `1 <= tokens.length <= 10^4`\n- `tokens[i]` is either an operator: `\"+\"`, `\"-\"`, `\"*\"`, or `\"/\"`, or an integer in the range `[-200, 200]`.",
+    "starterJs": "const fs = require('fs');\nconst tokens = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    tokens = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[\"2\",\"1\",\"+\",\"3\",\"*\"]",
+        "expectedOutput": "9"
+      },
+      {
+        "isHidden": false,
+        "input": "[\"4\",\"13\",\"5\",\"/\",\"+\"]",
+        "expectedOutput": "6"
+      },
+      {
+        "isHidden": false,
+        "input": "[\"10\",\"6\",\"9\",\"3\",\"+\",\"-11\",\"*\",\"/\",\"*\",\"17\",\"+\",\"5\",\"+\"]",
+        "expectedOutput": "22"
+      },
+      {
+        "isHidden": true,
+        "input": "[\"1\",\"1\",\"+\"]",
+        "expectedOutput": "2"
+      }
+    ]
+  },
+  {
+    "slug": "daily-temperatures",
+    "title": "Daily Temperatures",
+    "difficulty": "Medium",
+    "tags": ["array", "stack", "monotonic-stack"],
+    "statementMd": "Given an array of integers `temperatures` represents the daily temperatures, return an array `answer` such that `answer[i]` is the number of days you have to wait after the `i-th` day to get a warmer temperature. If there is no future day for which this is possible, keep `answer[i] == 0` instead.\n\n**Example 1:**\n```\nInput: temperatures = [73,74,75,71,69,72,76,73]\nOutput: [1,1,4,2,1,1,0,0]\n```\n\n**Example 2:**\n```\nInput: temperatures = [30,40,50,60]\nOutput: [1,1,1,0]\n```\n\n**Example 3:**\n```\nInput: temperatures = [30,60,90]\nOutput: [1,1,0]\n```\n\n**Constraints:**\n- `1 <= temperatures.length <= 10^5`\n- `30 <= temperatures[i] <= 100`",
+    "starterJs": "const fs = require('fs');\nconst temperatures = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    temperatures = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[73,74,75,71,69,72,76,73]",
+        "expectedOutput": "[1,1,4,2,1,1,0,0]"
+      },
+      {
+        "isHidden": false,
+        "input": "[30,40,50,60]",
+        "expectedOutput": "[1,1,1,0]"
+      },
+      {
+        "isHidden": false,
+        "input": "[30,60,90]",
+        "expectedOutput": "[1,1,0]"
+      },
+      {
+        "isHidden": true,
+        "input": "[55,38,53,81,61,93,97,32,43,78]",
+        "expectedOutput": "[3,1,1,2,1,1,0,1,1,0]"
+      }
+    ]
+  },
+  {
+    "slug": "car-fleet",
+    "title": "Car Fleet",
+    "difficulty": "Medium",
+    "tags": ["array", "stack", "sorting", "monotonic-stack"],
+    "statementMd": "There are `n` cars going to the same destination along a one-lane road. The destination is `target` miles away.\n\nYou are given two integer arrays `position` and `speed`, both of length `n`, where `position[i]` is the position of the `i-th` car and `speed[i]` is the speed of the `i-th` car (in miles per hour).\n\nA car can never pass another car ahead of it, but it can catch up to it and drive bumper to bumper at the same speed. The faster car will slow down to match the slower car's speed. The distance between these two cars is ignored (i.e., they are assumed to have the same position).\n\nA car fleet is some non-empty set of cars driving at the same position and same speed. Note that a single car is also a car fleet.\n\nIf a car catches up to a car fleet right at the destination point, it will still be considered as one car fleet.\n\nReturn the number of car fleets that will arrive at the destination.\n\n**Example 1:**\n```\nInput: target = 12, position = [10,8,0,5,3], speed = [2,4,1,1,3]\nOutput: 3\nExplanation:\nThe cars starting at 10 (speed 2) and 8 (speed 4) become a fleet, meeting each other at 12.\nThe car starting at 0 (speed 1) does not catch up to any other car, so it is a fleet by itself.\nThe cars starting at 5 (speed 1) and 3 (speed 3) become a fleet, meeting each other at 6.\nThe fleets meet at 12, so the answer is 3.\n```\n\n**Example 2:**\n```\nInput: target = 10, position = [3], speed = [3]\nOutput: 1\n```\n\n**Example 3:**\n```\nInput: target = 100, position = [0,2,4], speed = [4,2,1]\nOutput: 1\nExplanation:\nThe cars starting at 0 (speed 4) and 2 (speed 2) become a fleet by meeting each other at 4.\nThe car fleet at 4 (speed 1) then catches up to the car fleet at 2 (speed 2) at 6.\nAll three cars meet at 6, so the answer is 1.\n```\n\n**Constraints:**\n- `n == position.length == speed.length`\n- `1 <= n <= 10^5`\n- `0 < target <= 10^6`\n- `0 <= position[i] < target`\n- All the values of `position` are unique.\n- `0 < speed[i] <= 10^6`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst target = parseInt(lines[0]);\nconst position = JSON.parse(lines[1]);\nconst speed = JSON.parse(lines[2]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\ntarget = int(lines[0])\nposition = json.loads(lines[1])\nspeed = json.loads(lines[2])\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "12\\n[10,8,0,5,3]\\n[2,4,1,1,3]",
+        "expectedOutput": "3"
+      },
+      {
+        "isHidden": false,
+        "input": "10\\n[3]\\n[3]",
+        "expectedOutput": "1"
+      },
+      {
+        "isHidden": false,
+        "input": "100\\n[0,2,4]\\n[4,2,1]",
+        "expectedOutput": "1"
+      },
+      {
+        "isHidden": true,
+        "input": "10\\n[6,8]\\n[3,2]",
+        "expectedOutput": "2"
+      }
+    ]
+  },
+  {
+    "slug": "best-time-to-buy-and-sell-stock",
+    "title": "Best Time to Buy And Sell Stock",
+    "difficulty": "Easy",
+    "tags": ["array", "dynamic-programming"],
+    "statementMd": "You are given an array `prices` where `prices[i]` is the price of a given stock on the `i-th` day.\n\nYou want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.\n\nReturn the maximum profit you can achieve from this transaction. If you cannot achieve any profit, return `0`.\n\n**Example 1:**\n```\nInput: prices = [7,1,5,3,6,4]\nOutput: 5\nExplanation: Buy on day 2 (price = 1) and sell on day 5 (price = 6), profit = 6-1 = 5.\nNote that buying on day 2 and selling on day 1 is not allowed because you must buy before you sell.\n```\n\n**Example 2:**\n```\nInput: prices = [7,6,4,3,1]\nOutput: 0\nExplanation: In this case, no transactions are done and the max profit = 0.\n```\n\n**Constraints:**\n- `1 <= prices.length <= 10^5`\n- `0 <= prices[i] <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst prices = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    prices = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[7,1,5,3,6,4]",
+        "expectedOutput": "5"
+      },
+      {
+        "isHidden": false,
+        "input": "[7,6,4,3,1]",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2]",
+        "expectedOutput": "1"
+      },
+      {
+        "isHidden": true,
+        "input": "[2,4,1]",
+        "expectedOutput": "2"
+      }
+    ]
+  },
+  {
+    "slug": "longest-substring-without-repeating-characters",
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "tags": ["hash-table", "string", "sliding-window"],
+    "statementMd": "Given a string `s`, find the length of the longest substring without repeating characters.\n\n**Example 1:**\n```\nInput: s = \"abcabcbb\"\nOutput: 3\nExplanation: The answer is \"abc\", with the length of 3.\n```\n\n**Example 2:**\n```\nInput: s = \"bbbbb\"\nOutput: 1\nExplanation: The answer is \"b\", with the length of 1.\n```\n\n**Example 3:**\n```\nInput: s = \"pwwkew\"\nOutput: 3\nExplanation: The answer is \"wke\", with the length of 3.\nNotice that the answer must be a substring, \"pwke\" is a subsequence and not a substring.\n```\n\n**Constraints:**\n- `0 <= s.length <= 5 * 10^4`\n- `s` consists of English letters, digits, symbols and spaces.",
+    "starterJs": "const fs = require('fs');\nconst s = fs.readFileSync('/work/input.txt', 'utf-8').trim();\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "with open('/work/input.txt', 'r') as f:\n    s = f.read().strip()\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "abcabcbb",
+        "expectedOutput": "3"
+      },
+      {
+        "isHidden": false,
+        "input": "bbbbb",
+        "expectedOutput": "1"
+      },
+      {
+        "isHidden": false,
+        "input": "pwwkew",
+        "expectedOutput": "3"
+      },
+      {
+        "isHidden": true,
+        "input": "",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "dvdf",
+        "expectedOutput": "3"
+      }
+    ]
+  },
+  {
+    "slug": "longest-repeating-character-replacement",
+    "title": "Longest Repeating Character Replacement",
+    "difficulty": "Medium",
+    "tags": ["hash-table", "string", "sliding-window"],
+    "statementMd": "You are given a string `s` and an integer `k`. You can choose any character of the string and change it to any other uppercase English letter. You can perform this operation at most `k` times.\n\nReturn the length of the longest substring containing the same letter you can get after performing the above operations.\n\n**Example 1:**\n```\nInput: s = \"ABAB\", k = 2\nOutput: 4\nExplanation: Replace the two 'A's with two 'B's or vice versa.\n```\n\n**Example 2:**\n```\nInput: s = \"AABABBA\", k = 1\nOutput: 4\nExplanation: Replace the one 'A' in the middle with 'B' and form \"AABBBBA\".\nThe substring \"BBBB\" has the longest repeating letters, which is 4.\nThere may exists other ways to achieve this answer too.\n```\n\n**Constraints:**\n- `1 <= s.length <= 10^5`\n- `s` consists of only uppercase English letters.\n- `0 <= k <= s.length`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst s = lines[0];\nconst k = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "with open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\ns = lines[0]\nk = int(lines[1])\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "ABAB\\n2",
+        "expectedOutput": "4"
+      },
+      {
+        "isHidden": false,
+        "input": "AABABBA\\n1",
+        "expectedOutput": "4"
+      },
+      {
+        "isHidden": true,
+        "input": "ABAA\\n0",
+        "expectedOutput": "2"
+      },
+      {
+        "isHidden": true,
+        "input": "A\\n1",
+        "expectedOutput": "1"
+      }
+    ]
+  }
+]
