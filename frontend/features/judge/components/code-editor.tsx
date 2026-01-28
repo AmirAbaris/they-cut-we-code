@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 import { LanguageSelector } from "./language-selector";
 import { EditorActions } from "./editor-actions";
+import { Card, CardContent } from "@/components/ui/card";
 
 const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
   ssr: false,
@@ -30,34 +31,36 @@ export function CodeEditor({
   isSubmitting,
 }: CodeEditorProps) {
   return (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <div className="flex items-center justify-between mb-4">
-        <LanguageSelector
-          language={language}
-          onLanguageChange={onLanguageChange}
-        />
-        <EditorActions
-          onRun={onRun}
-          onSubmit={onSubmit}
-          isRunning={isRunning}
-          isSubmitting={isSubmitting}
-        />
-      </div>
+    <Card>
+      <CardContent className="p-6">
+        <div className="flex items-center justify-between mb-4">
+          <LanguageSelector
+            language={language}
+            onLanguageChange={onLanguageChange}
+          />
+          <EditorActions
+            onRun={onRun}
+            onSubmit={onSubmit}
+            isRunning={isRunning}
+            isSubmitting={isSubmitting}
+          />
+        </div>
 
-      <div className="border border-gray-300 rounded overflow-hidden">
-        <MonacoEditor
-          height="500px"
-          language={language === "js" ? "javascript" : "python"}
-          value={code}
-          onChange={(value) => onCodeChange(value || "")}
-          theme="vs-dark"
-          options={{
-            minimap: { enabled: false },
-            fontSize: 14,
-            wordWrap: "on",
-          }}
-        />
-      </div>
-    </div>
+        <div className="border rounded overflow-hidden">
+          <MonacoEditor
+            height="500px"
+            language={language === "js" ? "javascript" : "python"}
+            value={code}
+            onChange={(value) => onCodeChange(value || "")}
+            theme="vs-dark"
+            options={{
+              minimap: { enabled: false },
+              fontSize: 14,
+              wordWrap: "on",
+            }}
+          />
+        </div>
+      </CardContent>
+    </Card>
   );
 }

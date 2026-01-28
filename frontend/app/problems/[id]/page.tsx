@@ -10,9 +10,10 @@ import { ProblemStatement } from "@/features/problems/components/problem-stateme
 import { CodeEditor } from "@/features/judge/components/code-editor";
 import { RunResults } from "@/features/judge/components/run-results";
 import { SubmitResults } from "@/features/judge/components/submit-results";
-import { LoadingState } from "@/shared/components/loading-state";
 import { ErrorState } from "@/shared/components/error-state";
 import { getErrorMessage } from "@/shared/utils/api-error";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function ProblemPage() {
   const params = useParams();
@@ -69,27 +70,53 @@ export default function ProblemPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <LoadingState />
+      <div className="min-h-screen bg-background">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <div className="mb-4">
+            <Skeleton className="h-5 w-32" />
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <Skeleton className="h-8 w-64" />
+                  <Skeleton className="h-6 w-16 rounded-full" />
+                </div>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="flex gap-2">
+                  <Skeleton className="h-5 w-16 rounded-full" />
+                  <Skeleton className="h-5 w-20 rounded-full" />
+                </div>
+                <Skeleton className="h-32 w-full" />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="p-6">
+                <Skeleton className="h-[500px] w-full" />
+              </CardContent>
+            </Card>
+          </div>
+        </div>
       </div>
     );
   }
 
   if (error || !problem) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-background flex items-center justify-center">
         <ErrorState message="Problem not found" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-4">
           <Link
             href="/"
-            className="text-blue-600 hover:text-blue-800 text-sm font-medium"
+            className="text-primary hover:text-primary/80 text-sm font-medium"
           >
             ← Back to Problems
           </Link>
