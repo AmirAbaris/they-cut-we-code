@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { LanguageSelector } from "./language-selector";
 import { EditorActions } from "./editor-actions";
