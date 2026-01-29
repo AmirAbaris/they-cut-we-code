@@ -7,16 +7,10 @@ import { ProblemSearch } from "@/features/problems/components/problem-search";
 import { LoadingState } from "@/shared/components/loading-state";
 import { ErrorState } from "@/shared/components/error-state";
 import { ThemeToggle } from "@/shared/components/theme-toggle";
+import { AboutDialog } from "@/shared/components/about-dialog";
+import { BrandDialog } from "@/shared/components/brand-dialog";
 import { API_URL } from "@/shared/constants/api";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
@@ -46,68 +40,8 @@ export default function Home() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  ?
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>They Cut, We Code</DialogTitle>
-                  <DialogDescription>
-                    It’s not just a sentence — it’s the engineering mindset.
-                  </DialogDescription>
-                </DialogHeader>
-
-                <div className="text-sm leading-relaxed space-y-3">
-                  <p>
-                    When the situation gets bad, engineers don’t wait for
-                    perfect conditions. We reduce the problem, isolate
-                    constraints, and ship a path forward.
-                  </p>
-                  <p>
-                    No shortcuts, no excuses — just fundamentals: clarity,
-                    resilience, and iteration.
-                  </p>
-                  <p className="font-medium">
-                    They cut. We code. We always find a way.
-                  </p>
-                </div>
-              </DialogContent>
-            </Dialog>
-
-            <Dialog>
-              <DialogTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="text-muted-foreground hover:text-foreground"
-                >
-                  About
-                </Button>
-              </DialogTrigger>
-              <DialogContent>
-                <DialogHeader>
-                  <DialogTitle>About</DialogTitle>
-                  <DialogDescription>
-                    Built by Amir Abaris and Ali Zoghi.
-                  </DialogDescription>
-                </DialogHeader>
-
-                <div className="text-sm leading-relaxed space-y-4">
-                  <p>
-                    This is a mini LeetCode-style platform you can run locally
-                    to practice algorithm problems, even during long internet
-                    shutdowns.
-                  </p>
-                </div>
-              </DialogContent>
-            </Dialog>
+            <BrandDialog />
+            <AboutDialog />
 
             <ThemeToggle />
           </div>
