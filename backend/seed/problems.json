@@ -1057,5 +1057,182 @@
         "expectedOutput": "[1,2,3,4,5]"
       }
     ]
+  },
+  {
+    "slug": "function-composition-js",
+    "title": "Function Composition (JS)",
+    "difficulty": "Easy",
+    "tags": ["javascript", "function", "design"],
+    "statementMd": "You are given an integer `x` and an array of unary operations to apply.\n\nEach operation is one of:\n- `{\"op\":\"add\",\"value\":k}` meaning `x = x + k`\n- `{\"op\":\"mul\",\"value\":k}` meaning `x = x * k`\n- `{\"op\":\"sub\",\"value\":k}` meaning `x = x - k`\n\nImplement `compose(ops)` that returns a function `f(x)` which applies all operations from **right to left**.\n\nReturn the final value.\n\n**Example:**\n```\nInput:\nops = [{\"op\":\"add\",\"value\":2},{\"op\":\"mul\",\"value\":3}]\nx = 4\nOutput: 14\nExplanation: right-to-left => mul then add: (4*3)+2 = 14\n```\n\n**Constraints:**\n- `0 <= ops.length <= 10^5`\n- `-10^9 <= x,k <= 10^9`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt','utf-8').trim().split('\\n');\nconst ops = JSON.parse(lines[0] || '[]');\nconst x = parseInt(lines[1]);\n\n// Your solution here\n// Implement compose(ops)\n\nconst f = compose(ops);\nconst result = f(x);\nconsole.log(String(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt','r') as f:\n    lines = f.read().strip().split('\\n')\nops = json.loads(lines[0]) if len(lines)>0 and lines[0] else []\nx = int(lines[1])\n\n# Your solution here\n# Implement compose(ops)\n\ndef _apply(op, x):\n    t = op['op']\n    v = int(op['value'])\n    if t == 'add':\n        return x + v\n    if t == 'mul':\n        return x * v\n    if t == 'sub':\n        return x - v\n    raise ValueError('bad op')\n\nf = compose(ops)\nresult = f(x)\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[{\"op\":\"add\",\"value\":2},{\"op\":\"mul\",\"value\":3}]\\n4",
+        "expectedOutput": "14"
+      },
+      { "isHidden": false, "input": "[]\\n7", "expectedOutput": "7" },
+      {
+        "isHidden": true,
+        "input": "[{\"op\":\"sub\",\"value\":1},{\"op\":\"sub\",\"value\":2}]\\n10",
+        "expectedOutput": "9"
+      },
+      {
+        "isHidden": true,
+        "input": "[{\"op\":\"mul\",\"value\":0},{\"op\":\"add\",\"value\":5}]\\n3",
+        "expectedOutput": "0"
+      }
+    ]
+  },
+  {
+    "slug": "array-reduce-transform-js",
+    "title": "Array Reduce Transform (JS)",
+    "difficulty": "Easy",
+    "tags": ["javascript", "array", "functional"],
+    "statementMd": "Implement `reduce(nums, fn, init)`.\n\nYou will receive:\n- an integer array `nums`\n- a reducer name `fn` which is one of: `sum`, `product`, `max`\n- an initial value `init`\n\nReturn the final reduced value.\n\n**Example:**\n```\nInput:\nnums = [1,2,3,4]\nfn = \"sum\"\ninit = 0\nOutput: 10\n```\n\n**Constraints:**\n- `0 <= nums.length <= 10^5`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt','utf-8').trim().split('\\n');\nconst nums = JSON.parse(lines[0] || '[]');\nconst fnName = (lines[1] || '').trim();\nconst init = parseInt(lines[2]);\n\n// Your solution here\n// Implement reduce(nums, fn, init)\n\nconst reducers = {\n  sum: (acc, x) => acc + x,\n  product: (acc, x) => acc * x,\n  max: (acc, x) => Math.max(acc, x),\n};\n\nconst result = reduce(nums, reducers[fnName], init);\nconsole.log(String(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt','r') as f:\n    lines = f.read().strip().split('\\n')\nnums = json.loads(lines[0]) if len(lines)>0 and lines[0] else []\nfn_name = lines[1].strip()\ninit = int(lines[2])\n\n# Your solution here\n# Implement reduce(nums, fn, init)\n\ndef sum_fn(acc, x):\n    return acc + x\n\ndef product_fn(acc, x):\n    return acc * x\n\ndef max_fn(acc, x):\n    return acc if acc > x else x\n\nreducers = {'sum': sum_fn, 'product': product_fn, 'max': max_fn}\nresult = reduce(nums, reducers[fn_name], init)\nprint(result)",
+    "testCases": [
+      { "isHidden": false, "input": "[1,2,3,4]\\nsum\\n0", "expectedOutput": "10" },
+      { "isHidden": false, "input": "[1,2,3,4]\\nproduct\\n1", "expectedOutput": "24" },
+      { "isHidden": true, "input": "[]\\nsum\\n5", "expectedOutput": "5" },
+      { "isHidden": true, "input": "[-5,-2,-9]\\nmax\\n-100", "expectedOutput": "-2" }
+    ]
+  },
+  {
+    "slug": "once-function-js",
+    "title": "Once Function (JS)",
+    "difficulty": "Easy",
+    "tags": ["javascript", "closure"],
+    "statementMd": "Implement `once(fn)` which returns a new function.\n\n- The first time the returned function is called, it should call `fn` and return its result.\n- On subsequent calls, it should return `null`.\n\nInput provides `a`, `b`, and a list of `calls` (each call is `[a,b]`). The base function is `fn(a,b) = a + b`.\n\nReturn an array of outputs for each call.\n\n**Example:**\n```\nInput:\na = 2\nb = 3\ncalls = [[2,3],[2,3],[9,1]]\nOutput: [5,null,null]\n```\n\n**Constraints:**\n- `0 <= calls.length <= 10^5`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt','utf-8').trim().split('\\n');\nconst calls = JSON.parse(lines[0] || '[]');\n\n// Your solution here\n// Implement once(fn)\n\nconst fn = (a, b) => a + b;\nconst g = once(fn);\nconst result = calls.map(([a, b]) => g(a, b));\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt','r') as f:\n    lines = f.read().strip().split('\\n')\ncalls = json.loads(lines[0]) if len(lines)>0 and lines[0] else []\n\n# Your solution here\n# Implement once(fn)\n\ndef fn(a, b):\n    return a + b\n\ng = once(fn)\nresult = [g(a, b) for a, b in calls]\nprint(json.dumps(result))",
+    "testCases": [
+      { "isHidden": false, "input": "[[2,3],[2,3],[9,1]]", "expectedOutput": "[5,null,null]" },
+      { "isHidden": false, "input": "[]", "expectedOutput": "[]" },
+      { "isHidden": true, "input": "[[0,0],[1,2]]", "expectedOutput": "[0,null]" },
+      { "isHidden": true, "input": "[[-5,2],[-5,2],[-1,-1]]", "expectedOutput": "[-3,null,null]" }
+    ]
+  },
+  {
+    "slug": "memoize-function-js",
+    "title": "Memoize Function (JS)",
+    "difficulty": "Medium",
+    "tags": ["javascript", "memoization", "closure"],
+    "statementMd": "Implement `memoize(fn)`.\n\nYou will be given:\n- `fnName`: one of `sum`, `fib`, `factorial`\n- `calls`: an array of arguments (each entry is an integer)\n\nWe will run your memoized function on each call and record:\n- `results`: return values for each call\n- `callsToBase`: how many times the **original** function was actually executed\n\nReturn `{\"results\": [...], \"callsToBase\": number}`.\n\n**Example:**\n```\nInput:\nfnName = \"sum\"\ncalls = [5,5,7]\nOutput: {\"results\":[15,15,28],\"callsToBase\":2}\n```\n\n**Constraints:**\n- `0 <= calls.length <= 10^5`\n- `0 <= x <= 30` for `fib`/`factorial` cases",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt','utf-8').trim().split('\\n');\nconst fnName = (lines[0] || '').trim();\nconst calls = JSON.parse(lines[1] || '[]');\n\n// Your solution here\n// Implement memoize(fn)\n\nlet callsToBase = 0;\nconst baseFns = {\n  sum: (n) => {\n    callsToBase++;\n    // intentionally not O(1) so memoization matters\n    let s = 0;\n    for (let i = 1; i <= n; i++) s += i;\n    return s;\n  },\n  fib: (n) => {\n    callsToBase++;\n    if (n <= 1) return n;\n    return baseFns.fib(n - 1) + baseFns.fib(n - 2);\n  },\n  factorial: (n) => {\n    callsToBase++;\n    if (n <= 1) return 1;\n    return n * baseFns.factorial(n - 1);\n  },\n};\n\nconst fn = baseFns[fnName];\nconst m = memoize(fn);\nconst results = calls.map((x) => m(x));\n\nconsole.log(JSON.stringify({ results, callsToBase }));",
+    "starterPy": "import json\n\nwith open('/work/input.txt','r') as f:\n    lines = f.read().strip().split('\\n')\nfn_name = lines[0].strip()\ncalls = json.loads(lines[1]) if len(lines)>1 and lines[1] else []\n\n# Your solution here\n# Implement memoize(fn)\n\ncalls_to_base = 0\n\ndef sum_fn(n):\n    global calls_to_base\n    calls_to_base += 1\n    return n * (n + 1) // 2\n\ndef fib_fn(n):\n    global calls_to_base\n    calls_to_base += 1\n    if n <= 1:\n        return n\n    return fib_fn(n - 1) + fib_fn(n - 2)\n\ndef factorial_fn(n):\n    global calls_to_base\n    calls_to_base += 1\n    if n <= 1:\n        return 1\n    return n * factorial_fn(n - 1)\n\nbase = {'sum': sum_fn, 'fib': fib_fn, 'factorial': factorial_fn}[fn_name]\nm = memoize(base)\nresults = [m(x) for x in calls]\nprint(json.dumps({\"results\": results, \"callsToBase\": calls_to_base}))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "sum\\n[5,5,7]",
+        "expectedOutput": "{\"results\":[15,15,28],\"callsToBase\":2}"
+      },
+      {
+        "isHidden": false,
+        "input": "factorial\\n[5,5,3]",
+        "expectedOutput": "{\"results\":[120,120,6],\"callsToBase\":2}"
+      },
+      {
+        "isHidden": true,
+        "input": "sum\\n[]",
+        "expectedOutput": "{\"results\":[],\"callsToBase\":0}"
+      },
+      {
+        "isHidden": true,
+        "input": "fib\\n[6,6,5]",
+        "expectedOutput": "{\"results\":[8,8,5],\"callsToBase\":2}"
+      }
+    ]
+  },
+  {
+    "slug": "event-emitter-js",
+    "title": "Event Emitter (JS)",
+    "difficulty": "Medium",
+    "tags": ["javascript", "design", "hash-table"],
+    "statementMd": "Implement an `EventEmitter` with methods:\n- `subscribe(eventName, callback)` returns an object `{ unsubscribe() }`\n- `emit(eventName, args)` calls all subscribed callbacks with `...args` and returns an array of their return values\n\nInput is a list of operations.\n\nOperation format:\n- `[\"subscribe\", eventName]` creates a subscription and returns a subscription id\n- `[\"emit\", eventName, argsArray]` emits and collects results\n- `[\"unsubscribe\", subId]` unsubscribes\n\nYou must output the list of results for each `emit` operation.\n\n**Example:**\n```\nops = [\n  [\"subscribe\",\"a\"],\n  [\"emit\",\"a\",[1,2]],\n  [\"unsubscribe\",0],\n  [\"emit\",\"a\",[1,2]]\n]\nOutput: [[3],[]]\n```\n\nCallbacks are fixed: they return the sum of their arguments.\n\n**Constraints:**\n- `0 <= ops.length <= 10^5`",
+    "starterJs": "const fs = require('fs');\nconst raw = fs.readFileSync('/work/input.txt','utf-8').trim();\nconst ops = raw ? JSON.parse(raw) : [];\n\n// Your solution here\n// Implement EventEmitter\n\nconst emitter = new EventEmitter();\nconst subs = [];\nconst output = [];\n\nconst callback = (...args) => args.reduce((a, b) => a + b, 0);\n\nfor (const op of ops) {\n  const [type, a, b] = op;\n  if (type === 'subscribe') {\n    subs.push(emitter.subscribe(a, callback));\n  } else if (type === 'unsubscribe') {\n    subs[a]?.unsubscribe();\n  } else if (type === 'emit') {\n    output.push(emitter.emit(a, b));\n  }\n}\n\nconsole.log(JSON.stringify(output));",
+    "starterPy": "import json\n\nwith open('/work/input.txt','r') as f:\n    raw = f.read().strip()\nops = json.loads(raw) if raw else []\n\n# Your solution here\n# Implement EventEmitter\n\nemitter = EventEmitter()\nsubs = []\nout = []\n\ndef callback(*args):\n    return sum(args)\n\nfor op in ops:\n    typ = op[0]\n    if typ == 'subscribe':\n        subs.append(emitter.subscribe(op[1], callback))\n    elif typ == 'unsubscribe':\n        sub_id = op[1]\n        if 0 <= sub_id < len(subs) and subs[sub_id] is not None:\n            subs[sub_id].unsubscribe()\n    elif typ == 'emit':\n        out.append(emitter.emit(op[1], op[2]))\n\nprint(json.dumps(out))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[[\"subscribe\",\"a\"],[\"emit\",\"a\",[1,2]],[\"unsubscribe\",0],[\"emit\",\"a\",[1,2]]]",
+        "expectedOutput": "[[3],[]]"
+      },
+      {
+        "isHidden": false,
+        "input": "[[\"subscribe\",\"x\"],[\"subscribe\",\"x\"],[\"emit\",\"x\",[5] ]]",
+        "expectedOutput": "[[5,5]]"
+      },
+      { "isHidden": true, "input": "[[\"emit\",\"z\",[1] ]]", "expectedOutput": "[[]]" },
+      {
+        "isHidden": true,
+        "input": "[[\"subscribe\",\"a\"],[\"subscribe\",\"b\"],[\"emit\",\"a\",[1,1]],[\"emit\",\"b\",[2,3] ]]",
+        "expectedOutput": "[[2],[5]]"
+      }
+    ]
+  },
+  {
+    "slug": "promise-all-js",
+    "title": "Promise All (JS)",
+    "difficulty": "Medium",
+    "tags": ["javascript", "promise", "async"],
+    "statementMd": "Implement `promiseAll(functions)`.\n\nYou are given an array of tasks. Each task is either:\n- `{ \"type\": \"resolve\", \"value\": any }`\n- `{ \"type\": \"reject\", \"reason\": any }`\n\nWe will convert each task into a function that returns a Promise.\n\n`promiseAll` should behave like `Promise.all`:\n- resolves with an array of values (same order) if all succeed\n- rejects with the first rejection reason\n\nOutput must be:\n- `{\"status\":\"fulfilled\",\"value\":[...]}` or\n- `{\"status\":\"rejected\",\"reason\":...}`\n\n**Constraints:**\n- `0 <= tasks.length <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst raw = fs.readFileSync('/work/input.txt','utf-8').trim();\nconst tasks = raw ? JSON.parse(raw) : [];\n\n// Your solution here\n// Implement promiseAll(functions)\n\nconst functions = tasks.map((t) => () =>\n  t.type === 'resolve'\n    ? Promise.resolve(t.value)\n    : Promise.reject(t.reason)\n);\n\n(async () => {\n  try {\n    const value = await promiseAll(functions);\n    console.log(JSON.stringify({ status: 'fulfilled', value }));\n  } catch (reason) {\n    console.log(JSON.stringify({ status: 'rejected', reason }));\n  }\n})();",
+    "starterPy": "import json\nimport asyncio\n\nwith open('/work/input.txt','r') as f:\n    raw = f.read().strip()\ntasks = json.loads(raw) if raw else []\n\n# Your solution here\n# Implement promise_all(functions)\n\nasync def _make_task(t):\n    if t.get('type') == 'resolve':\n        return t.get('value')\n    raise Exception(t.get('reason'))\n\nfunctions = [lambda t=t: _make_task(t) for t in tasks]\n\nasync def main():\n    try:\n        value = await promise_all(functions)\n        print(json.dumps({\"status\": \"fulfilled\", \"value\": value}))\n    except Exception as e:\n        # reject reason is stored as message\n        print(json.dumps({\"status\": \"rejected\", \"reason\": str(e)}))\n\nasyncio.run(main())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[{\"type\":\"resolve\",\"value\":1},{\"type\":\"resolve\",\"value\":2}]",
+        "expectedOutput": "{\"status\":\"fulfilled\",\"value\":[1,2]}"
+      },
+      {
+        "isHidden": false,
+        "input": "[{\"type\":\"resolve\",\"value\":1},{\"type\":\"reject\",\"reason\":\"nope\"},{\"type\":\"resolve\",\"value\":3}]",
+        "expectedOutput": "{\"status\":\"rejected\",\"reason\":\"nope\"}"
+      },
+      {
+        "isHidden": true,
+        "input": "[]",
+        "expectedOutput": "{\"status\":\"fulfilled\",\"value\":[]}"
+      },
+      {
+        "isHidden": true,
+        "input": "[{\"type\":\"reject\",\"reason\":42}]",
+        "expectedOutput": "{\"status\":\"rejected\",\"reason\":42}"
+      }
+    ]
+  },
+  {
+    "slug": "promise-time-limit-js",
+    "title": "Time Limit Wrapper (JS)",
+    "difficulty": "Medium",
+    "tags": ["javascript", "promise", "async"],
+    "statementMd": "Implement `timeLimit(fn, t)`.\n\nIt should return a new function that behaves like `fn`, except:\n- if `fn` does not settle within `t` milliseconds, the returned Promise must reject with the string `\"Time Limit Exceeded\"`.\n\nInput provides:\n- `t` (ms)\n- `taskMs` (how long the task waits before resolving)\n- `value` (resolved value)\n\nWe will create `fn` as a function returning a Promise that resolves after `taskMs`.\n\nOutput:\n- `{\"status\":\"fulfilled\",\"value\":...}` or `{\"status\":\"rejected\",\"reason\":...}`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt','utf-8').trim().split('\\n');\nconst t = parseInt(lines[0]);\nconst taskMs = parseInt(lines[1]);\nconst value = JSON.parse(lines[2]);\n\n// Your solution here\n// Implement timeLimit(fn, t)\n\nconst fn = () => new Promise((resolve) => setTimeout(() => resolve(value), taskMs));\nconst limited = timeLimit(fn, t);\n\n(async () => {\n  try {\n    const v = await limited();\n    console.log(JSON.stringify({ status: 'fulfilled', value: v }));\n  } catch (reason) {\n    console.log(JSON.stringify({ status: 'rejected', reason }));\n  }\n})();",
+    "starterPy": "import json\nimport asyncio\n\nwith open('/work/input.txt','r') as f:\n    lines = f.read().strip().split('\\n')\nt = int(lines[0])\ntask_ms = int(lines[1])\nvalue = json.loads(lines[2])\n\n# Your solution here\n# Implement time_limit(fn, t)\n\nasync def fn():\n    await asyncio.sleep(task_ms / 1000.0)\n    return value\n\nlimited = time_limit(fn, t)\n\nasync def main():\n    try:\n        v = await limited()\n        print(json.dumps({\"status\":\"fulfilled\",\"value\": v}))\n    except Exception as e:\n        print(json.dumps({\"status\":\"rejected\",\"reason\": str(e)}))\n\nasyncio.run(main())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "50\\n10\\n123",
+        "expectedOutput": "{\"status\":\"fulfilled\",\"value\":123}"
+      },
+      {
+        "isHidden": false,
+        "input": "10\\n50\\n123",
+        "expectedOutput": "{\"status\":\"rejected\",\"reason\":\"Time Limit Exceeded\"}"
+      },
+      {
+        "isHidden": true,
+        "input": "1\\n2\\n\"ok\"",
+        "expectedOutput": "{\"status\":\"rejected\",\"reason\":\"Time Limit Exceeded\"}"
+      },
+      {
+        "isHidden": true,
+        "input": "100\\n0\\n{\"a\":1}",
+        "expectedOutput": "{\"status\":\"fulfilled\",\"value\":{\"a\":1}}"
+      }
+    ]
   }
 ]
