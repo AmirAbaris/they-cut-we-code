@@ -16,6 +16,7 @@ import { getErrorMessage } from "@/shared/utils/api-error";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { toast } from "sonner";
+import { buildEditorHint } from "@/features/judge/utils/editor-hint";
 
 export default function ProblemPage() {
   const params = useParams();
@@ -27,6 +28,11 @@ export default function ProblemPage() {
 
   const [language, setLanguage] = useState<"js" | "py">("js");
   const [code, setCode] = useState("");
+
+  const editorHint =
+    problem && problem.starterCode?.[language]
+      ? buildEditorHint(language, problem.starterCode[language])
+      : undefined;
 
   useEffect(() => {
     if (problem) {
@@ -137,6 +143,7 @@ export default function ProblemPage() {
             <CodeEditor
               language={language}
               code={code}
+              hint={editorHint}
               onLanguageChange={setLanguage}
               onCodeChange={setCode}
               onRun={handleRun}

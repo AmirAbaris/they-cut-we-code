@@ -12,6 +12,7 @@ const MonacoEditor = dynamic(() => import("@monaco-editor/react"), {
 interface CodeEditorProps {
   language: "js" | "py";
   code: string;
+  hint?: string;
   onLanguageChange: (lang: "js" | "py") => void;
   onCodeChange: (code: string) => void;
   onRun: () => void;
@@ -23,6 +24,7 @@ interface CodeEditorProps {
 export function CodeEditor({
   language,
   code,
+  hint,
   onLanguageChange,
   onCodeChange,
   onRun,
@@ -45,6 +47,12 @@ export function CodeEditor({
             isSubmitting={isSubmitting}
           />
         </div>
+
+        {hint ? (
+          <div className="mb-3 rounded border bg-muted/50 px-3 py-2 text-xs text-muted-foreground">
+            {hint}
+          </div>
+        ) : null}
 
         <div className="border rounded overflow-hidden">
           <MonacoEditor
