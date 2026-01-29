@@ -74,7 +74,7 @@ npm run dev
 
 ## Current Problems
 
-The platform comes with 5 sample problems. Add more by editing `backend/seed/problems.json` and running `npm run seed` in the backend directory.
+The platform comes with a few sample problems. Add more by editing `backend/seed/problems.json` and running `npm run seed` in the backend directory.
 
 Sample problems included:
 
