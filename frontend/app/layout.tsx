@@ -15,7 +15,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="min-h-screen flex flex-col">
+            <main className="flex-1">{children}</main>
+            <footer className="border-t">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+                <p className="text-sm text-muted-foreground">
+                  To the brave people of Iran ❤️🕊️
+                </p>
+              </div>
+            </footer>
+          </div>
+        </Providers>
       </body>
     </html>
   );
