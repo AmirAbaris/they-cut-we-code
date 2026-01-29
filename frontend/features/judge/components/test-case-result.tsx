@@ -22,7 +22,7 @@ export function TestCaseResult({ testCase, index }: TestCaseResultProps) {
         {testCase.stdout && (
           <div className="mb-1">
             <span className="text-muted-foreground">Output:</span>
-            <pre className="mt-1 bg-muted p-2 rounded text-xs overflow-x-auto">
+            <pre className="mt-1 bg-muted p-2 rounded text-xs max-w-full overflow-x-auto whitespace-pre-wrap break-words">
               {testCase.stdout}
             </pre>
           </div>
@@ -30,7 +30,7 @@ export function TestCaseResult({ testCase, index }: TestCaseResultProps) {
         {testCase.stderr && (
           <div className="mb-1">
             <span className="text-destructive">Error:</span>
-            <pre className="mt-1 bg-destructive/10 p-2 rounded text-xs overflow-x-auto text-destructive">
+            <pre className="mt-1 bg-destructive/10 p-2 rounded text-xs max-w-full overflow-x-auto whitespace-pre-wrap break-words text-destructive">
               {testCase.stderr}
             </pre>
           </div>
@@ -39,13 +39,13 @@ export function TestCaseResult({ testCase, index }: TestCaseResultProps) {
           <div className="grid grid-cols-2 gap-2 mt-2">
             <div>
               <span className="text-muted-foreground">Expected:</span>
-              <pre className="mt-1 bg-muted p-2 rounded text-xs">
+              <pre className="mt-1 bg-muted p-2 rounded text-xs max-w-full overflow-x-auto whitespace-pre-wrap break-words">
                 {testCase.expected}
               </pre>
             </div>
             <div>
               <span className="text-muted-foreground">Got:</span>
-              <pre className="mt-1 bg-muted p-2 rounded text-xs">
+              <pre className="mt-1 bg-muted p-2 rounded text-xs max-w-full overflow-x-auto whitespace-pre-wrap break-words">
                 {testCase.got}
               </pre>
             </div>
