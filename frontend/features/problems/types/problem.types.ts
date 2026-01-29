@@ -6,6 +6,16 @@ export interface Problem {
   tags: string[];
 }
 
+export interface Paginated<T> {
+  items: T[];
+  page: number;
+  limit: number;
+  total: number;
+  totalPages: number;
+  hasNext: boolean;
+  hasPrevious: boolean;
+}
+
 export interface ProblemDetail extends Problem {
   statementMd: string;
   starterCode: {

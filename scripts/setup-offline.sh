@@ -12,13 +12,13 @@ NC='\033[0m' # No Color
 # Pull Docker images
 echo -e "${YELLOW}Pulling Docker images...${NC}"
 docker pull node:20-bookworm-slim
-docker pull python:3.12-bookworm
+docker pull python:3.12-slim
 echo -e "${GREEN}✓ Docker images pulled${NC}"
 
 # Save Docker images to tar
 echo -e "${YELLOW}Saving Docker images to tar...${NC}"
 mkdir -p dist
-docker save node:20-bookworm-slim python:3.12-bookworm -o dist/images.tar
+docker save node:20-bookworm-slim python:3.12-slim -o dist/images.tar
 echo -e "${GREEN}✓ Docker images saved to dist/images.tar${NC}"
 
 # Install backend dependencies

@@ -5,11 +5,30 @@ import { SqliteService } from '../db/sqlite.service';
 export class ProblemsService {
   constructor(private readonly dbService: SqliteService) {}
 
-  findAll() {
+  findAll(params?: { page?: number; limit?: number; q?: string }) {
     const db = this.dbService.getDatabase();
+
+    const page = Math.max(1, params?.page ?? 1);
+    const limit = Math.min(100, Math.max(1, params?.limit ?? 20));
+    const q = (params?.q ?? '').trim();
+
+    const whereClause = q
+      ? 'WHERE lower(title) LIKE ? OR lower(slug) LIKE ? OR lower(tags) LIKE ?'
+      : '';
+    const qParam = `%${q.toLowerCase()}%`;
+    const whereParams = q ? [qParam, qParam, qParam] : [];
+
+    const totalRow = db
+      .prepare(`SELECT COUNT(*) as total FROM problems ${whereClause}`)
+      .get(...whereParams) as { total: number };
+
+    const offset = (page - 1) * limit;
+
     const problems = db
-      .prepare('SELECT id, slug, title, difficulty, tags FROM problems ORDER BY id')
-      .all() as Array<{
+      .prepare(
+        `SELECT id, slug, title, difficulty, tags FROM problems ${whereClause} ORDER BY id LIMIT ? OFFSET ?`
+      )
+      .all(...whereParams, limit, offset) as Array<{
       id: number;
       slug: string;
       title: string;
@@ -17,13 +36,28 @@ export class ProblemsService {
       tags: string;
     }>;
 
-    return problems.map((p) => ({
+    const items = problems.map((p) => ({
       id: p.id,
       slug: p.slug,
       title: p.title,
       difficulty: p.difficulty,
       tags: JSON.parse(p.tags) as string[],
     }));
+
+    const total = totalRow?.total ?? 0;
+    const totalPages = Math.max(1, Math.ceil(total / limit));
+    const hasPrevious = page > 1;
+    const hasNext = page < totalPages;
+
+    return {
+      items,
+      page,
+      limit,
+      total,
+      totalPages,
+      hasNext,
+      hasPrevious,
+    };
   }
 
   findOne(idOrSlug: string | number) {

@@ -19,10 +19,10 @@ if ! docker image inspect node:20-bookworm-slim > /dev/null 2>&1; then
   }
 fi
 
-if ! docker image inspect python:3.12-bookworm > /dev/null 2>&1; then
-  echo "Warning: python:3.12-bookworm not found. Attempting to pull..."
-  docker pull python:3.12-bookworm || {
-    echo "Error: Failed to pull python:3.12-bookworm"
+if ! docker image inspect python:3.12-slim > /dev/null 2>&1; then
+  echo "Warning: python:3.12-slim not found. Attempting to pull..."
+  docker pull python:3.12-slim || {
+    echo "Error: Failed to pull python:3.12-slim"
     echo "If offline, run: docker load < dist/images.tar"
     exit 1
   }

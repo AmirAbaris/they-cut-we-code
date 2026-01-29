@@ -26,7 +26,7 @@ npm install
 
 ```bash
 docker pull node:20-bookworm-slim
-docker pull python:3.12-bookworm
+docker pull python:3.12-slim
 ```
 
 3. **Seed the database:**

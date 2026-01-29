@@ -1,11 +1,23 @@
 import { API_URL } from "@/shared/constants/api";
 import { ApiResult, ApiError } from "@/shared/types/api.types";
-import { Problem, ProblemDetail } from "../types/problem.types";
+import { Paginated, Problem, ProblemDetail } from "../types/problem.types";
 
 export const problemsApi = {
-  getAll: async (): Promise<ApiResult<Problem[]>> => {
+  getAll: async (params?: {
+    page?: number;
+    limit?: number;
+    q?: string;
+  }): Promise<ApiResult<Paginated<Problem>>> => {
     try {
-      const res = await fetch(`${API_URL}/problems`, { cache: "no-store" });
+      const searchParams = new URLSearchParams();
+      if (params?.page) searchParams.set("page", String(params.page));
+      if (params?.limit) searchParams.set("limit", String(params.limit));
+      if (params?.q) searchParams.set("q", params.q);
+
+      const qs = searchParams.toString();
+      const res = await fetch(`${API_URL}/problems${qs ? `?${qs}` : ""}`, {
+        cache: "no-store",
+      });
       const json = await res.json();
 
       if (!res.ok) {

@@ -22,7 +22,7 @@ An offline-first LeetCode-like coding platform that works during internet shutdo
 ```bash
 # Pull Docker images (one-time, can be done offline later via docker load)
 docker pull node:20-bookworm-slim
-docker pull python:3.12-bookworm
+docker pull python:3.12-slim
 
 # Start everything
 docker compose up -d

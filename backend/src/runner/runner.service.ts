@@ -114,7 +114,7 @@ export class RunnerService {
   ): Promise<ExecutionResult> {
     const containerName = `judge-${runId}`;
     const image =
-      language === Language.JAVASCRIPT ? 'node:20-bookworm-slim' : 'python:3.12-bookworm';
+      language === Language.JAVASCRIPT ? 'node:20-bookworm-slim' : 'python:3.12-slim';
     const command = language === Language.JAVASCRIPT ? 'node' : 'python';
     const filePath = language === Language.JAVASCRIPT ? '/work/main.js' : '/work/main.py';
 

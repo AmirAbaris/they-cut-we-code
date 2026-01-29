@@ -1,23 +1,30 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useEffect, useState } from "react";
 import { useProblems } from "@/features/problems/hooks/use-problems";
 import { ProblemList } from "@/features/problems/components/problem-list";
 import { ProblemSearch } from "@/features/problems/components/problem-search";
-import { filterProblems } from "@/features/problems/utils/filter-problems";
 import { LoadingState } from "@/shared/components/loading-state";
 import { ErrorState } from "@/shared/components/error-state";
 import { ThemeToggle } from "@/shared/components/theme-toggle";
 import { API_URL } from "@/shared/constants/api";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
-  const { data: problems = [], isLoading, error } = useProblems();
+  const [page, setPage] = useState(1);
+  const limit = 20;
 
-  const filteredProblems = useMemo(
-    () => filterProblems(problems, searchQuery),
-    [problems, searchQuery],
-  );
+  useEffect(() => {
+    setPage(1);
+  }, [searchQuery]);
+
+  const { data, isLoading, error } = useProblems({
+    page,
+    limit,
+    q: searchQuery.trim() ? searchQuery : undefined,
+  });
+  const problems = data?.items ?? [];
 
   return (
     <div className="min-h-screen bg-background">
@@ -45,11 +52,42 @@ export default function Home() {
           />
         ) : problems.length === 0 ? (
           <ErrorState
-            message={`No problems found. Make sure the backend is running on ${API_URL}`}
+            message={
+              searchQuery.trim()
+                ? "No problems match your search."
+                : `No problems found. Make sure the backend is running on ${API_URL}`
+            }
             variant="warning"
           />
         ) : (
-          <ProblemList problems={filteredProblems} />
+          <div className="space-y-6">
+            <ProblemList problems={problems} />
+
+            {data && data.totalPages > 1 && (
+              <div className="flex items-center justify-between">
+                <div className="text-sm text-muted-foreground">
+                  Page {data.page} of {data.totalPages} • {data.total} total
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <Button
+                    variant="outline"
+                    onClick={() => setPage((p) => Math.max(1, p - 1))}
+                    disabled={!data.hasPrevious}
+                  >
+                    Prev
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setPage((p) => p + 1)}
+                    disabled={!data.hasNext}
+                  >
+                    Next
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>

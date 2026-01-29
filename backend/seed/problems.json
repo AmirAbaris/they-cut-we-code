@@ -685,5 +685,377 @@
         "expectedOutput": "1"
       }
     ]
+  },
+  {
+    "slug": "contains-duplicate",
+    "title": "Contains Duplicate",
+    "difficulty": "Easy",
+    "tags": ["array", "hash-table"],
+    "statementMd": "Given an integer array `nums`, return `true` if any value appears **at least twice** in the array, and return `false` if every element is distinct.\n\n**Example 1:**\n```\nInput: nums = [1,2,3,1]\nOutput: true\n```\n\n**Example 2:**\n```\nInput: nums = [1,2,3,4]\nOutput: false\n```\n\n**Constraints:**\n- `0 <= nums.length <= 10^5`\n- `-10^9 <= nums[i] <= 10^9`",
+    "starterJs": "const fs = require('fs');\nconst nums = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim() || '[]');\n\n// Your solution here\n\nconsole.log(String(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    raw = f.read().strip()\nnums = json.loads(raw) if raw else []\n\n# Your solution here\n\nprint(str(result).lower())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,2,3,1]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2,3,4]",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": true,
+        "input": "[0,0]",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": true,
+        "input": "[1]",
+        "expectedOutput": "false"
+      }
+    ]
+  },
+  {
+    "slug": "valid-anagram",
+    "title": "Valid Anagram",
+    "difficulty": "Easy",
+    "tags": ["string", "hash-table", "sorting"],
+    "statementMd": "Given two strings `s` and `t`, return `true` if `t` is an anagram of `s`, and `false` otherwise.\n\nAn anagram is formed by rearranging the letters of a word using **all** characters exactly once.\n\n**Example 1:**\n```\nInput: s = \"anagram\", t = \"nagaram\"\nOutput: true\n```\n\n**Example 2:**\n```\nInput: s = \"rat\", t = \"car\"\nOutput: false\n```\n\n**Constraints:**\n- `0 <= s.length, t.length <= 10^5`\n- `s` and `t` consist of lowercase English letters.",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst s = lines[0] ?? '';\nconst t = lines[1] ?? '';\n\n// Your solution here\n\nconsole.log(String(result));",
+    "starterPy": "with open('/work/input.txt', 'r') as f:\n    lines = f.read().splitlines()\ns = lines[0] if len(lines) > 0 else ''\nt = lines[1] if len(lines) > 1 else ''\n\n# Your solution here\n\nprint(str(result).lower())",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "anagram\\nnagaram",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": false,
+        "input": "rat\\ncar",
+        "expectedOutput": "false"
+      },
+      {
+        "isHidden": true,
+        "input": "ab\\nba",
+        "expectedOutput": "true"
+      },
+      {
+        "isHidden": true,
+        "input": "a\\na",
+        "expectedOutput": "true"
+      }
+    ]
+  },
+  {
+    "slug": "merge-two-sorted-arrays",
+    "title": "Merge Two Sorted Arrays",
+    "difficulty": "Easy",
+    "tags": ["array", "two-pointers", "sorting"],
+    "statementMd": "Given two integer arrays `a` and `b` sorted in non-decreasing order, return a new array that contains all elements from both arrays in sorted order.\n\n**Example 1:**\n```\nInput:\na = [1,3,5]\nb = [2,4,6]\nOutput: [1,2,3,4,5,6]\n```\n\n**Example 2:**\n```\nInput:\na = []\nb = [1]\nOutput: [1]\n```\n\n**Constraints:**\n- `0 <= a.length, b.length <= 10^5`\n- Arrays are already sorted.",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst a = JSON.parse(lines[0] || '[]');\nconst b = JSON.parse(lines[1] || '[]');\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\na = json.loads(lines[0]) if len(lines) > 0 and lines[0] else []\nb = json.loads(lines[1]) if len(lines) > 1 and lines[1] else []\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,3,5]\\n[2,4,6]",
+        "expectedOutput": "[1,2,3,4,5,6]"
+      },
+      {
+        "isHidden": false,
+        "input": "[]\\n[1]",
+        "expectedOutput": "[1]"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2]\\n[]",
+        "expectedOutput": "[1,2]"
+      },
+      {
+        "isHidden": true,
+        "input": "[-3,0,2]\\n[-2,-1,3]",
+        "expectedOutput": "[-3,-2,-1,0,2,3]"
+      }
+    ]
+  },
+  {
+    "slug": "move-zeroes",
+    "title": "Move Zeroes",
+    "difficulty": "Easy",
+    "tags": ["array", "two-pointers"],
+    "statementMd": "Given an integer array `nums`, move all `0`s to the end of the array while maintaining the relative order of the non-zero elements.\n\nReturn the resulting array.\n\n**Example 1:**\n```\nInput: nums = [0,1,0,3,12]\nOutput: [1,3,12,0,0]\n```\n\n**Example 2:**\n```\nInput: nums = [1,2,3]\nOutput: [1,2,3]\n```\n\n**Constraints:**\n- `0 <= nums.length <= 10^5`\n- `-10^9 <= nums[i] <= 10^9`",
+    "starterJs": "const fs = require('fs');\nconst raw = fs.readFileSync('/work/input.txt', 'utf-8').trim();\nconst nums = raw ? JSON.parse(raw) : [];\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    raw = f.read().strip()\nnums = json.loads(raw) if raw else []\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[0,1,0,3,12]",
+        "expectedOutput": "[1,3,12,0,0]"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2,3]",
+        "expectedOutput": "[1,2,3]"
+      },
+      {
+        "isHidden": true,
+        "input": "[0,0,0]",
+        "expectedOutput": "[0,0,0]"
+      },
+      {
+        "isHidden": true,
+        "input": "[4,0,5,0,0,3]",
+        "expectedOutput": "[4,5,3,0,0,0]"
+      }
+    ]
+  },
+  {
+    "slug": "chunk-array",
+    "title": "Chunk Array",
+    "difficulty": "Easy",
+    "tags": ["array", "javascript"],
+    "statementMd": "Given an array `arr` and a positive integer `size`, split `arr` into chunks of length `size`.\n\nThe last chunk may be shorter if there are not enough elements.\n\n**Example 1:**\n```\nInput: arr = [1,2,3,4,5], size = 2\nOutput: [[1,2],[3,4],[5]]\n```\n\n**Example 2:**\n```\nInput: arr = [1,2,3], size = 3\nOutput: [[1,2,3]]\n```\n\n**Constraints:**\n- `0 <= arr.length <= 10^5`\n- `1 <= size <= 10^5`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst arr = JSON.parse(lines[0] || '[]');\nconst size = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\narr = json.loads(lines[0]) if len(lines) > 0 and lines[0] else []\nsize = int(lines[1])\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,2,3,4,5]\\n2",
+        "expectedOutput": "[[1,2],[3,4],[5]]"
+      },
+      {
+        "isHidden": false,
+        "input": "[1,2,3]\\n3",
+        "expectedOutput": "[[1,2,3]]"
+      },
+      {
+        "isHidden": true,
+        "input": "[]\\n1",
+        "expectedOutput": "[]"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,3,4]\\n5",
+        "expectedOutput": "[[1,2,3,4]]"
+      }
+    ]
+  },
+  {
+    "slug": "counter-with-reset",
+    "title": "Counter With Reset",
+    "difficulty": "Easy",
+    "tags": ["javascript", "closure", "design"],
+    "statementMd": "Implement `createCounter(n)`.\n\n`createCounter(n)` should return an object with three methods:\n- `increment()` increases the current value by 1 and returns it.\n- `decrement()` decreases the current value by 1 and returns it.\n- `reset()` sets the current value back to the initial `n` and returns it.\n\nYou will be given the initial `n` and a list of operations. Return an array containing the return value of each operation in order.\n\n**Example 1:**\n```\nInput:\nn = 5\nops = [\"increment\",\"increment\",\"decrement\",\"reset\",\"increment\"]\nOutput: [6,7,6,5,6]\n```\n\n**Example 2:**\n```\nInput:\nn = 0\nops = [\"decrement\",\"decrement\",\"reset\"]\nOutput: [-1,-2,0]\n```\n\n**Constraints:**\n- `-10^9 <= n <= 10^9`\n- `0 <= ops.length <= 10^5`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst n = parseInt(lines[0]);\nconst ops = JSON.parse(lines[1] || '[]');\n\n// Your solution here\n// Implement createCounter(n)\n\nconst counter = createCounter(n);\nconst result = [];\nfor (const op of ops) {\n  result.push(counter[op]());\n}\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nn = int(lines[0])\nops = json.loads(lines[1]) if len(lines) > 1 and lines[1] else []\n\n# Your solution here\n# Implement create_counter(n)\n\ncounter = create_counter(n)\nresult = []\nfor op in ops:\n    result.append(getattr(counter, op)())\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "5\\n[\"increment\",\"increment\",\"decrement\",\"reset\",\"increment\"]",
+        "expectedOutput": "[6,7,6,5,6]"
+      },
+      {
+        "isHidden": false,
+        "input": "0\\n[\"decrement\",\"decrement\",\"reset\"]",
+        "expectedOutput": "[-1,-2,0]"
+      },
+      {
+        "isHidden": true,
+        "input": "10\\n[]",
+        "expectedOutput": "[]"
+      },
+      {
+        "isHidden": true,
+        "input": "-2\\n[\"increment\",\"reset\",\"decrement\"]",
+        "expectedOutput": "[-1,-2,-3]"
+      }
+    ]
+  },
+  {
+    "slug": "product-of-array-except-self",
+    "title": "Product of Array Except Self",
+    "difficulty": "Medium",
+    "tags": ["array", "prefix-sum"],
+    "statementMd": "Given an integer array `nums`, return an array `answer` such that `answer[i]` is equal to the product of all the elements of `nums` except `nums[i]`.\n\nYou must write an algorithm that runs in `O(n)` time and does not use division.\n\n**Example 1:**\n```\nInput: nums = [1,2,3,4]\nOutput: [24,12,8,6]\n```\n\n**Example 2:**\n```\nInput: nums = [-1,1,0,-3,3]\nOutput: [0,0,9,0,0]\n```\n\n**Constraints:**\n- `2 <= nums.length <= 10^5`\n- `-30 <= nums[i] <= 30`\n- The product of any prefix or suffix fits in 32-bit integer.",
+    "starterJs": "const fs = require('fs');\nconst nums = JSON.parse(fs.readFileSync('/work/input.txt', 'utf-8').trim());\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    nums = json.loads(f.read().strip())\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,2,3,4]",
+        "expectedOutput": "[24,12,8,6]"
+      },
+      {
+        "isHidden": false,
+        "input": "[-1,1,0,-3,3]",
+        "expectedOutput": "[0,0,9,0,0]"
+      },
+      {
+        "isHidden": true,
+        "input": "[2,3]",
+        "expectedOutput": "[3,2]"
+      },
+      {
+        "isHidden": true,
+        "input": "[0,0]",
+        "expectedOutput": "[0,0]"
+      }
+    ]
+  },
+  {
+    "slug": "top-k-frequent-elements",
+    "title": "Top K Frequent Elements",
+    "difficulty": "Medium",
+    "tags": ["array", "hash-table", "sorting"],
+    "statementMd": "Given an integer array `nums` and an integer `k`, return the `k` most frequent elements.\n\nTo make output deterministic, if multiple values have the same frequency, order them by **smaller value first**. The returned list must be ordered by **frequency descending**, then by **value ascending**.\n\n**Example 1:**\n```\nInput: nums = [1,1,1,2,2,3], k = 2\nOutput: [1,2]\n```\n\n**Example 2:**\n```\nInput: nums = [4,4,4,6,6,5], k = 1\nOutput: [4]\n```\n\n**Constraints:**\n- `1 <= nums.length <= 10^5`\n- `1 <= k <= number of distinct elements`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst nums = JSON.parse(lines[0]);\nconst k = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nnums = json.loads(lines[0])\nk = int(lines[1])\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,1,1,2,2,3]\\n2",
+        "expectedOutput": "[1,2]"
+      },
+      {
+        "isHidden": false,
+        "input": "[4,4,4,6,6,5]\\n1",
+        "expectedOutput": "[4]"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,2,3,3]\\n2",
+        "expectedOutput": "[2,3]"
+      },
+      {
+        "isHidden": true,
+        "input": "[-1,-1,-2,-2,-2,0]\\n2",
+        "expectedOutput": "[-2,-1]"
+      }
+    ]
+  },
+  {
+    "slug": "longest-consecutive-sequence",
+    "title": "Longest Consecutive Sequence",
+    "difficulty": "Medium",
+    "tags": ["array", "hash-table"],
+    "statementMd": "Given an unsorted array of integers `nums`, return the length of the longest consecutive elements sequence.\n\nYou must write an algorithm that runs in `O(n)` time.\n\n**Example 1:**\n```\nInput: nums = [100,4,200,1,3,2]\nOutput: 4\nExplanation: The longest consecutive sequence is [1,2,3,4].\n```\n\n**Example 2:**\n```\nInput: nums = [0,3,7,2,5,8,4,6,0,1]\nOutput: 9\n```\n\n**Constraints:**\n- `0 <= nums.length <= 10^5`\n- `-10^9 <= nums[i] <= 10^9`",
+    "starterJs": "const fs = require('fs');\nconst raw = fs.readFileSync('/work/input.txt', 'utf-8').trim();\nconst nums = raw ? JSON.parse(raw) : [];\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    raw = f.read().strip()\nnums = json.loads(raw) if raw else []\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[100,4,200,1,3,2]",
+        "expectedOutput": "4"
+      },
+      {
+        "isHidden": false,
+        "input": "[0,3,7,2,5,8,4,6,0,1]",
+        "expectedOutput": "9"
+      },
+      {
+        "isHidden": true,
+        "input": "[]",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,2,0,1]",
+        "expectedOutput": "3"
+      }
+    ]
+  },
+  {
+    "slug": "search-in-rotated-sorted-array",
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "tags": ["array", "binary-search"],
+    "statementMd": "An integer array `nums` is sorted in ascending order and then rotated at an unknown pivot.\n\nGiven the array `nums` and an integer `target`, return the index of `target` if it is in the array, otherwise return `-1`.\n\nYou must write an algorithm with `O(log n)` runtime complexity.\n\n**Example 1:**\n```\nInput: nums = [4,5,6,7,0,1,2], target = 0\nOutput: 4\n```\n\n**Example 2:**\n```\nInput: nums = [4,5,6,7,0,1,2], target = 3\nOutput: -1\n```\n\n**Constraints:**\n- `0 <= nums.length <= 10^5`\n- All values in `nums` are unique.",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst nums = JSON.parse(lines[0] || '[]');\nconst target = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\nnums = json.loads(lines[0]) if len(lines) > 0 and lines[0] else []\ntarget = int(lines[1])\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[4,5,6,7,0,1,2]\\n0",
+        "expectedOutput": "4"
+      },
+      {
+        "isHidden": false,
+        "input": "[4,5,6,7,0,1,2]\\n3",
+        "expectedOutput": "-1"
+      },
+      {
+        "isHidden": true,
+        "input": "[1]\\n0",
+        "expectedOutput": "-1"
+      },
+      {
+        "isHidden": true,
+        "input": "[3,1]\\n1",
+        "expectedOutput": "1"
+      }
+    ]
+  },
+  {
+    "slug": "coin-change-min-coins",
+    "title": "Coin Change (Minimum Coins)",
+    "difficulty": "Medium",
+    "tags": ["dynamic-programming", "array"],
+    "statementMd": "You are given an integer array `coins` representing coin denominations and an integer `amount`.\n\nReturn the fewest number of coins needed to make up that amount. If that amount cannot be made up by any combination of the coins, return `-1`.\n\n**Example 1:**\n```\nInput: coins = [1,2,5], amount = 11\nOutput: 3\nExplanation: 11 = 5 + 5 + 1\n```\n\n**Example 2:**\n```\nInput: coins = [2], amount = 3\nOutput: -1\n```\n\n**Constraints:**\n- `1 <= coins.length <= 100`\n- `0 <= amount <= 10^4`",
+    "starterJs": "const fs = require('fs');\nconst lines = fs.readFileSync('/work/input.txt', 'utf-8').trim().split('\\n');\nconst coins = JSON.parse(lines[0]);\nconst amount = parseInt(lines[1]);\n\n// Your solution here\n\nconsole.log(result);",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    lines = f.read().strip().split('\\n')\ncoins = json.loads(lines[0])\namount = int(lines[1])\n\n# Your solution here\n\nprint(result)",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,2,5]\\n11",
+        "expectedOutput": "3"
+      },
+      {
+        "isHidden": false,
+        "input": "[2]\\n3",
+        "expectedOutput": "-1"
+      },
+      {
+        "isHidden": true,
+        "input": "[1]\\n0",
+        "expectedOutput": "0"
+      },
+      {
+        "isHidden": true,
+        "input": "[2,5,10,1]\\n27",
+        "expectedOutput": "4"
+      }
+    ]
+  },
+  {
+    "slug": "flatten-nested-array",
+    "title": "Flatten Nested Array",
+    "difficulty": "Medium",
+    "tags": ["array", "recursion", "javascript"],
+    "statementMd": "Given a nested array `arr` that may contain integers or other arrays, return a new array containing all integers in `arr` in the same order, but flattened to a single level.\n\n**Example 1:**\n```\nInput: arr = [1,[2,[3,4],5],6]\nOutput: [1,2,3,4,5,6]\n```\n\n**Example 2:**\n```\nInput: arr = []\nOutput: []\n```\n\n**Constraints:**\n- `0 <= arr.length <= 10^5` (counting nested elements)\n- Elements are integers or arrays.",
+    "starterJs": "const fs = require('fs');\nconst raw = fs.readFileSync('/work/input.txt', 'utf-8').trim();\nconst arr = raw ? JSON.parse(raw) : [];\n\n// Your solution here\n\nconsole.log(JSON.stringify(result));",
+    "starterPy": "import json\n\nwith open('/work/input.txt', 'r') as f:\n    raw = f.read().strip()\narr = json.loads(raw) if raw else []\n\n# Your solution here\n\nprint(json.dumps(result))",
+    "testCases": [
+      {
+        "isHidden": false,
+        "input": "[1,[2,[3,4],5],6]",
+        "expectedOutput": "[1,2,3,4,5,6]"
+      },
+      {
+        "isHidden": false,
+        "input": "[]",
+        "expectedOutput": "[]"
+      },
+      {
+        "isHidden": true,
+        "input": "[[[[1]]]]",
+        "expectedOutput": "[1]"
+      },
+      {
+        "isHidden": true,
+        "input": "[1,[2],[],[3,[4,[]]],5]",
+        "expectedOutput": "[1,2,3,4,5]"
+      }
+    ]
   }
 ]

@@ -1,13 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import { problemsApi } from "../api/problems.api";
-import { Problem } from "../types/problem.types";
-import { ApiResult } from "@/shared/types/api.types";
+import { Paginated, Problem } from "../types/problem.types";
 
-export const useProblems = () => {
-  return useQuery<Problem[], Error>({
-    queryKey: ["problems"],
+export const useProblems = (params?: {
+  page?: number;
+  limit?: number;
+  q?: string;
+}) => {
+  return useQuery<Paginated<Problem>, Error>({
+    queryKey: [
+      "problems",
+      params?.page ?? 1,
+      params?.limit ?? 20,
+      params?.q ?? "",
+    ],
     queryFn: async () => {
-      const result = await problemsApi.getAll();
+      const result = await problemsApi.getAll(params);
       if (!result.success) {
         throw new Error(result.error.message);
       }
