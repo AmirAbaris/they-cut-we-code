@@ -3,7 +3,10 @@ version: "3.8"
 services:
   backend:
     volumes:
+      - ./backend/data:/app/data
+      - /tmp/they-cut-we-code:/tmp/they-cut-we-code
       # Docker Desktop on Windows exposes the daemon via a named pipe.
       # Mount it to the Unix socket path expected by the backend.
       - //./pipe/docker_engine:/var/run/docker.sock
-
+    environment:
+      - RUNNER_TMP_DIR=/tmp/they-cut-we-code
