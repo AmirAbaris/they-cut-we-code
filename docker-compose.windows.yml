@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  backend:
+    volumes:
+      # Docker Desktop on Windows exposes the daemon via a named pipe.
+      # Mount it to the Unix socket path expected by the backend.
+      - //./pipe/docker_engine:/var/run/docker.sock
+
