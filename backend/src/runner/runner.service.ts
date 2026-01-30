@@ -8,7 +8,14 @@ import { Language, Verdict, ExecutionResult } from './runner.types';
 @Injectable()
 export class RunnerService {
   private readonly logger = new Logger(RunnerService.name);
-  private readonly tmpDir = path.join(process.cwd(), 'tmp');
+  /**
+   * IMPORTANT: this directory must be a host-visible path because we talk to the host
+   * Docker daemon via /var/run/docker.sock and use bind mounts.
+   *
+   * If this points to a container-only path (e.g. /app/tmp), `docker run -v ...` will fail
+   * on Docker Desktop with "path is not shared" / "mounts denied".
+   */
+  private readonly tmpDir = process.env.RUNNER_TMP_DIR || '/tmp/they-cut-we-code';
   private readonly maxOutputSize = 64 * 1024; // 64KB
   private readonly timeoutMs = 5000; // 5 seconds hard timeout
   private readonly memoryLimit = '256m';
@@ -17,8 +24,9 @@ export class RunnerService {
 
   constructor() {
     // Ensure tmp directory exists
-    fs.mkdir(this.tmpDir, { recursive: true }).catch((err) => {
-      this.logger.error(`Failed to create tmp directory: ${err.message}`);
+    fs.mkdir(this.tmpDir, { recursive: true }).catch((err: unknown) => {
+      const message = err instanceof Error ? err.message : String(err);
+      this.logger.error(`Failed to create tmp directory: ${message}`);
     });
 
     // Find Docker executable
@@ -26,7 +34,7 @@ export class RunnerService {
     if (!this.dockerPath) {
       this.logger.warn(
         'Docker not found in PATH. Make sure Docker is installed and accessible. ' +
-        'Common paths: /usr/local/bin/docker, /usr/bin/docker, /Applications/Docker.app/Contents/Resources/bin/docker'
+          'Common paths: /usr/local/bin/docker, /usr/bin/docker, /Applications/Docker.app/Contents/Resources/bin/docker'
       );
     }
   }
@@ -80,8 +88,10 @@ export class RunnerService {
       processedInput = processedInput.replace(/\\n/g, '\n');
       const inputPath = path.join(workDir, 'input.txt');
       await fs.writeFile(inputPath, processedInput, 'utf-8');
-      
-      this.logger.debug(`Input file written: ${inputPath}, content length: ${processedInput.length}, preview: ${processedInput.substring(0, 100)}`);
+
+      this.logger.debug(
+        `Input file written: ${inputPath}, content length: ${processedInput.length}, preview: ${processedInput.substring(0, 100)}`
+      );
 
       // Execute in Docker (no stdin needed, input is in file)
       const result = await this.runDockerContainer(runId, language, workDir, '');
@@ -113,8 +123,7 @@ export class RunnerService {
     input: string
   ): Promise<ExecutionResult> {
     const containerName = `judge-${runId}`;
-    const image =
-      language === Language.JAVASCRIPT ? 'node:20-bookworm-slim' : 'python:3.12-slim';
+    const image = language === Language.JAVASCRIPT ? 'node:20-bookworm-slim' : 'python:3.12-slim';
     const command = language === Language.JAVASCRIPT ? 'node' : 'python';
     const filePath = language === Language.JAVASCRIPT ? '/work/main.js' : '/work/main.py';
 
@@ -198,10 +207,10 @@ export class RunnerService {
         }
       });
 
-      dockerProcess.on('close', (code) => {
+      dockerProcess.on('close', (code: number | null) => {
         clearTimeout(timeout);
         const timeMs = Date.now() - startTime;
-        exitCode = code || 0;
+        exitCode = code ?? 0;
 
         let verdict: Verdict;
         if (timedOut) {
@@ -222,16 +231,17 @@ export class RunnerService {
         });
       });
 
-      dockerProcess.on('error', (error) => {
+      dockerProcess.on('error', (error: Error) => {
         clearTimeout(timeout);
         let errorMessage = `Docker execution error: ${error.message}`;
-        
+
         if (error.message.includes('ENOENT')) {
-          errorMessage = `Docker not found. Please install Docker or set DOCKER_PATH environment variable.\n` +
+          errorMessage =
+            `Docker not found. Please install Docker or set DOCKER_PATH environment variable.\n` +
             `Current docker path: ${this.dockerPath}\n` +
             `Error: ${error.message}`;
         }
-        
+
         resolve({
           verdict: Verdict.RUNTIME_ERROR,
           stdout: '',

@@ -9,11 +9,13 @@ services:
       - "4000:4000"
     volumes:
       - ./backend/data:/app/data
-      - ./backend/tmp:/app/tmp
+      # Host-visible path for bind-mounting into runner containers
+      - /tmp/they-cut-we-code:/tmp/they-cut-we-code
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
       - NODE_ENV=production
       - PORT=4000
+      - RUNNER_TMP_DIR=/tmp/they-cut-we-code
     restart: unless-stopped
     networks:
       - judge-network
@@ -24,8 +26,6 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      - NEXT_PUBLIC_API_URL=http://backend:4000
     depends_on:
       - backend
     restart: unless-stopped

@@ -6,10 +6,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci
+RUN npm install
 
 # Copy source code
 COPY . .
+
+# Ensure public/ exists (COPY would fail otherwise)
+RUN mkdir -p public
 
 # Build
 RUN npm run build
@@ -23,7 +26,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies
-RUN npm ci --only=production && npm cache clean --force
+RUN npm install --omit=dev && npm cache clean --force
 
 # Copy built files
 COPY --from=builder /app/.next ./.next

@@ -16,6 +16,26 @@ An offline-first LeetCode-like coding platform that works during internet shutdo
 - Node.js 20+
 - Docker & Docker Compose
 - npm (or pnpm/yarn)
+- Build tools (only if you do local `npm install` for the backend on Windows; see Troubleshooting)
+
+### Run with Docker (recommended on Windows)
+
+This avoids installing Node dependencies locally (no `npm install`, no Visual Studio Build Tools).
+
+```bash
+# macOS / Linux
+docker compose up --build
+```
+
+```bash
+# Windows (Docker Desktop)
+docker compose -f docker-compose.yml -f docker-compose.windows.yml up --build
+```
+
+Then open:
+
+- Frontend: `http://localhost:3000`
+- Backend: `http://localhost:4000`
 
 ### One-Command Setup
 
@@ -83,6 +103,21 @@ Sample problems included:
 - Valid Parentheses (Stack)
 - Binary Search (Binary Search)
 - Invert Binary Tree (Trees)
+
+## Troubleshooting
+
+### Windows: `npm install` fails on `better-sqlite3` (node-gyp / Visual Studio)
+
+If you’re trying to run the backend without Docker, `better-sqlite3` may need compilation.
+
+- Install **Visual Studio 2022 Build Tools** (Desktop development with C++, Windows SDK, MSVC v143)
+- Install **Python 3.x**
+- Then:
+
+```bash
+npm config set msvs_version 2022
+cd backend && npm install
+```
 
 ## Security
 
